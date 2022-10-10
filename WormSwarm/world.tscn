@@ -1,0 +1,236 @@
+[gd_scene load_steps=11 format=3 uid="uid://diixreny8h7yi"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_8cqj8"]
+[ext_resource type="ArrayMesh" uid="uid://dudiur8wojbhj" path="res://GRIEVELogoMasktest.obj" id="2_ji5sf"]
+[ext_resource type="Material" uid="uid://bi6ilcxu3aao2" path="res://Black.tres" id="3_53mvg"]
+[ext_resource type="Material" uid="uid://cp2yo78vbjv4s" path="res://OldMaterial.tres" id="4_dbxwy"]
+[ext_resource type="ArrayMesh" uid="uid://c6uggtt4p141c" path="res://AngelFractal1.obj" id="4_dph44"]
+
+[sub_resource type="Environment" id="Environment_fqwqj"]
+background_mode = 1
+background_color = Color(0.996078, 1, 0.952941, 1)
+background_energy = 0.1
+ambient_light_source = 2
+ambient_light_color = Color(0.862745, 0.898039, 1, 1)
+tonemap_mode = 3
+ssr_max_steps = 8
+ssao_radius = 3.0
+ssao_sharpness = 0.5
+sdfgi_bounce_feedback = 0.2
+sdfgi_cascades = 2
+sdfgi_max_distance = 51.2
+sdfgi_energy = 0.5
+glow_intensity = 1.2
+glow_strength = 1.2
+
+[sub_resource type="LabelSettings" id="LabelSettings_21eax"]
+font_size = 72
+
+[sub_resource type="Animation" id="Animation_mmnwg"]
+resource_name = "Fractal"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3d:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.01, 0.01, 0.01), Vector3(2, 2, 2), Vector3(0.01, 0.01, 0.01)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3d:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.523599), Vector3(3.29272e-08, -1.0472, -2.35619)]
+}
+
+[sub_resource type="Animation" id="Animation_wstp4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3d:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.01, 0.01, 0.01)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3d:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ygcx"]
+_data = {
+"Fractal": SubResource("Animation_mmnwg"),
+"RESET": SubResource("Animation_wstp4")
+}
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_8cqj8")
+
+[node name="OmniLight3d" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.91978, 2.5529)
+visible = false
+light_color = Color(0.854902, 0.905882, 1, 1)
+light_specular = 1.0
+shadow_enabled = true
+omni_range = 10.0
+
+[node name="OmniLight3d9" type="OmniLight3D" parent="."]
+visible = false
+light_color = Color(0.964706, 1, 0.980392, 1)
+light_energy = 3.0
+light_indirect_energy = 2.0
+light_specular = 1.0
+shadow_enabled = true
+omni_range = 15.0
+
+[node name="OmniLight3d7" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35041, 4.0629, -3.20655)
+visible = false
+light_color = Color(0.854902, 0.905882, 1, 1)
+light_specular = 1.0
+shadow_enabled = true
+omni_range = 10.0
+
+[node name="OmniLight3d2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23906, 2.31765, 4.84256)
+visible = false
+light_color = Color(0.92549, 0.827451, 1, 1)
+light_specular = 1.0
+omni_range = 10.0
+
+[node name="OmniLight3d8" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.11706, 2.31765, -1.18523)
+visible = false
+light_color = Color(0.92549, 0.827451, 1, 1)
+light_specular = 1.0
+omni_range = 10.0
+
+[node name="OmniLight3d3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08166, 4.02625, 2.53574)
+visible = false
+light_color = Color(0.870588, 1, 0.988235, 1)
+light_specular = 1.0
+omni_range = 10.0
+
+[node name="OmniLight3d4" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08166, 0.461207, 4.02523)
+visible = false
+light_color = Color(0.54902, 0.745098, 1, 1)
+light_specular = 1.0
+omni_range = 10.0
+
+[node name="OmniLight3d5" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.67423, 0.67288, 3.90415)
+visible = false
+light_color = Color(0.54902, 0.745098, 1, 1)
+light_specular = 1.0
+omni_range = 10.0
+
+[node name="OmniLight3d6" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.67423, 0.67288, -6.38841)
+visible = false
+light_color = Color(0.54902, 0.745098, 1, 1)
+light_specular = 1.0
+omni_range = 10.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fqwqj")
+
+[node name="DirectionalLight3d" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.854577, -0.519325, -1.82445e-07, 0.514869, 0.847245, -0.130716, 0.0678844, 0.111707, 0.99142, 0, 6.27575, 0)
+light_color = Color(0.968627, 1, 0.890196, 1)
+light_energy = 0.5
+
+[node name="DirectionalLight3d3" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.211582, 0.172896, -0.961946, -0.280921, 0.931938, 0.229291, 0.936118, 0.318745, -0.148611, -6.5324, 6.27575, -2.95576)
+visible = false
+light_color = Color(0.968627, 1, 0.890196, 1)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="DirectionalLight3d2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.52781, 0.56482, 0.634346, 0.763115, 0.0125651, -0.646141, -0.372924, 0.825118, -0.424391, 4.58673, -5.36158, 0)
+light_color = Color(0.968627, 1, 0.890196, 1)
+light_energy = 0.5
+
+[node name="DirectionalLight3d4" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.52781, 0.56482, 0.634346, -0.162708, 0.800255, -0.577164, -0.833632, 0.201419, 0.514284, 4.58673, -1.36158, 10)
+light_color = Color(0.654902, 0.768627, 1, 1)
+light_energy = 0.5
+
+[node name="DirectionalLight3d5" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.52781, 0.56482, 0.634346, 0.847339, -0.401677, -0.347379, 0.0585959, 0.720856, -0.690603, -5.41327, -1.36158, -13)
+light_color = Color(0.992157, 0.831373, 1, 1)
+light_energy = 0.5
+
+[node name="Node3d" type="Node3D" parent="."]
+
+[node name="Camera3d" type="Camera3D" parent="Node3d"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 4, 33.409)
+current = true
+fov = 80.0
+size = 20.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+offset_left = 22.0
+offset_top = 13.0
+offset_right = 77.0
+offset_bottom = 39.0
+text = "00
+"
+label_settings = SubResource("LabelSettings_21eax")
+
+[node name="GrieveLogoMasktest" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.282, -0.644, 13)
+visible = false
+mesh = ExtResource("2_ji5sf")
+surface_material_override/0 = ExtResource("3_53mvg")
+
+[node name="MeshInstance3d" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+visible = false
+material_override = ExtResource("4_dbxwy")
+mesh = ExtResource("4_dph44")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4ygcx")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

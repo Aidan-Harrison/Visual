@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8p35wfdho1su"]
+
+[ext_resource type="Script" path="res://Worm.gd" id="1_aqcur"]
+[ext_resource type="ArrayMesh" uid="uid://c6bnqeu0lqk86" path="res://WormSubSegmentTest.obj" id="2_bpjjr"]
+[ext_resource type="ArrayMesh" uid="uid://cufggdmlqur6h" path="res://WormHead.obj" id="2_nw7g1"]
+
+[node name="Worm" type="Node3D"]
+script = ExtResource("1_aqcur")
+headMesh = ExtResource("2_nw7g1")
+subMesh = ExtResource("2_bpjjr")
+
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="TickTimer" type="Timer" parent="."]
+wait_time = 0.05
+
+[connection signal="timeout" from="WaveTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]

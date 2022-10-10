@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdm16if86cxmi"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_6gh63"]
+[ext_resource type="PackedScene" uid="uid://cspxyb6lay3cr" path="res://Spawner.tscn" id="3_0jc6b"]
+[ext_resource type="PackedScene" uid="uid://c6i85v5j63vy" path="res://Player.tscn" id="4_aycqv"]
+[ext_resource type="PackedScene" uid="uid://cmcm4kij0khh5" path="res://UI.tscn" id="5_8qq1c"]
+[ext_resource type="PackedScene" uid="uid://b5otc0qcmpo5c" path="res://KillZone.tscn" id="6_ttgng"]
+[ext_resource type="PackedScene" uid="uid://b2wlm16us52sn" path="res://SpawnerUI.tscn" id="6_xv788"]
+
+[sub_resource type="Environment" id="Environment_dafij"]
+
+[node name="World" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_6gh63")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dafij")
+
+[node name="UI" parent="." instance=ExtResource("5_8qq1c")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -2671.0
+offset_top = -2697.0
+offset_right = 2655.0
+offset_bottom = 2702.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Camera2d" type="Camera2D" parent="."]
+current = true
+zoom = Vector2(0.4, 0.4)
+smoothing_enabled = true
+
+[node name="Spawner3" parent="." instance=ExtResource("3_0jc6b")]
+position = Vector2(2651, 2)
+killTime = 8.0
+projectileCount = 6
+shotgunType = -1
+canRoam = true
+isLerp = false
+spawnRate = 1.0
+delay = 2.0
+
+[node name="Player" parent="." instance=ExtResource("4_aycqv")]
+
+[node name="ContextMenu" parent="." instance=ExtResource("6_xv788")]
+
+[node name="KillZone" parent="." instance=ExtResource("6_ttgng")]
+position = Vector2(-2803, 33)

@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bfxtnxxgnqksf"]
+
+[ext_resource type="Texture2D" uid="uid://rudvn42v58h8" path="res://Bone.png.png" id="1_8tyxt"]
+
+[resource]
+albedo_color = Color(1, 0.733333, 0, 1)
+metallic = 0.9
+metallic_specular = 1.0
+roughness = 0.0
+emission_enabled = true
+emission_energy = 0.5
+emission_texture = ExtResource("1_8tyxt")

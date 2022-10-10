@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dudiur8wojbhj"
+path="res://.godot/imported/GRIEVELogoMasktest.obj-372b72f1e7ec46b34dd9b61a78ded244.mesh"
+
+[deps]
+
+files=["res://.godot/imported/GRIEVELogoMasktest.obj-372b72f1e7ec46b34dd9b61a78ded244.mesh"]
+
+source_file="res://GRIEVELogoMasktest.obj"
+dest_files=["res://.godot/imported/GRIEVELogoMasktest.obj-372b72f1e7ec46b34dd9b61a78ded244.mesh", "res://.godot/imported/GRIEVELogoMasktest.obj-372b72f1e7ec46b34dd9b61a78ded244.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

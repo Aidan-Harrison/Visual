@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://cspxyb6lay3cr"]
+
+[ext_resource type="Script" path="res://Spawner.gd" id="1_4vhcn"]
+[ext_resource type="Texture2D" uid="uid://bqwo2xffjm3hh" path="res://icon.svg" id="2_35wsd"]
+
+[node name="Spawner" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_4vhcn")
+doesOscillate = false
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+modulate = Color(0.0941176, 1, 0, 1)
+texture = ExtResource("2_35wsd")
+
+[node name="Button" type="Button" parent="."]
+offset_left = -339.0
+offset_top = -44.0
+offset_right = -249.0
+offset_bottom = 46.0
+focus_mode = 0
+
+[node name="Handle" type="Button" parent="."]
+offset_left = -63.0
+offset_top = -64.0
+offset_right = 63.0
+offset_bottom = 63.0
+focus_mode = 0
+text = "HANDLE"
+
+[node name="Toggle" type="Button" parent="."]
+modulate = Color(1, 0.00392157, 0, 1)
+offset_left = -41.0
+offset_top = 73.0
+offset_right = 40.0
+offset_bottom = 149.0
+focus_mode = 0
+
+[node name="MenuButton" type="Button" parent="."]
+modulate = Color(0.435294, 0, 1, 1)
+offset_left = -41.0
+offset_top = -150.0
+offset_right = 40.0
+offset_bottom = -74.0
+focus_mode = 0
+
+[node name="DelayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="KillTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="RoamTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="Handle" to="." method="_on_handle_button_down"]
+[connection signal="pressed" from="Toggle" to="." method="_on_toggle_pressed"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="timeout" from="DelayTimer" to="." method="_on_delay_timer_timeout"]
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
+[connection signal="timeout" from="RoamTimer" to="." method="_on_roam_timer_timeout"]

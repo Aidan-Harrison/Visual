@@ -1,0 +1,11 @@
+[gd_resource type="ORMMaterial3D" format=3 uid="uid://dds5qy4h0s77e"]
+
+[resource]
+diffuse_mode = 1
+albedo_color = Color(0.921569, 1, 0.937255, 1)
+clearcoat = 0.5
+clearcoat_roughness = 1.0
+subsurf_scatter_strength = 1.0
+subsurf_scatter_skin_mode = true
+backlight = Color(0.976471, 0.831373, 1, 1)
+grow_amount = 0.1

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c6uggtt4p141c"
+path="res://.godot/imported/AngelFractal1.obj-f635553fd58e1bd26ba5e8545fa8ee40.mesh"
+
+[deps]
+
+files=["res://.godot/imported/AngelFractal1.obj-f635553fd58e1bd26ba5e8545fa8ee40.mesh"]
+
+source_file="res://AngelFractal1.obj"
+dest_files=["res://.godot/imported/AngelFractal1.obj-f635553fd58e1bd26ba5e8545fa8ee40.mesh", "res://.godot/imported/AngelFractal1.obj-f635553fd58e1bd26ba5e8545fa8ee40.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

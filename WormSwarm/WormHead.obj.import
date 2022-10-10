@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cufggdmlqur6h"
+path="res://.godot/imported/WormHead.obj-7b5d15a38aa90d22f6da5e182f653314.mesh"
+
+[deps]
+
+files=["res://.godot/imported/WormHead.obj-7b5d15a38aa90d22f6da5e182f653314.mesh"]
+
+source_file="res://WormHead.obj"
+dest_files=["res://.godot/imported/WormHead.obj-7b5d15a38aa90d22f6da5e182f653314.mesh", "res://.godot/imported/WormHead.obj-7b5d15a38aa90d22f6da5e182f653314.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
