@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://pnhextst430"]
+
+[ext_resource type="Script" path="res://Tree/Oct_tree.gd" id="1_4trer"]
+
+[node name="Oct_tree" type="Node3D"]
+script = ExtResource("1_4trer")
+
+[node name="Visualise" type="Timer" parent="."]
+wait_time = 0.6
+autostart = true
+
+[connection signal="timeout" from="Visualise" to="." method="_on_visualise_timeout"]

@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bafh2vq06e86n"]
+
+[node name="Sky" type="Node3D"]
+
+[node name="CloudLayer" type="MeshInstance3D" parent="."]

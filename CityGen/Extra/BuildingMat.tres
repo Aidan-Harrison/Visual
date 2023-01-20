@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dvylplaj7k30r"]
+
+[ext_resource type="Texture2D" uid="uid://cy21bkqjjsxan" path="res://Extra/OfficeBuildingTexture.jpg" id="1_5htwy"]
+
+[resource]
+shading_mode = 2
+albedo_color = Color(0.631373, 0.631373, 0.631373, 1)
+albedo_texture = ExtResource("1_5htwy")
+metallic = 0.7
+metallic_specular = 1.0
+roughness = 0.3
+uv1_scale = Vector3(0.3, 0.3, 0.3)
+uv1_triplanar = true

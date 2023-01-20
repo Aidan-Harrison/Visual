@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dj5kqielv2c7a"]
+
+[ext_resource type="Texture2D" uid="uid://b7iw2w50bxl6c" path="res://Extra/TreeTexture.jpg" id="1_oj631"]
+
+[resource]
+albedo_color = Color(0.54902, 0.698039, 0.541176, 1)
+albedo_texture = ExtResource("1_oj631")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true

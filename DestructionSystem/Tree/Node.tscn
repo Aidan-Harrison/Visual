@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0kgikfgre617"]
+
+[ext_resource type="Script" path="res://Tree/Node.gd" id="1_q2vh6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kqf5u"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_o83v7"]
+
+[node name="Node" type="Node3D"]
+script = ExtResource("1_q2vh6")
+
+[node name="Area3d" type="Area3D" parent="."]
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="Area3d"]
+shape = SubResource("BoxShape3D_kqf5u")
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_o83v7")

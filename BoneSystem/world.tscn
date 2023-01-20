@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdi6hakpix60j"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_0s6pd"]
+[ext_resource type="PackedScene" uid="uid://lhdixo7wuj4d" path="res://Bone.tscn" id="2_fnbj3"]
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_0s6pd")
+
+[node name="Bone" parent="." instance=ExtResource("2_fnbj3")]
+
+[node name="CamSpatial" type="Node3D" parent="."]
+
+[node name="Camera3d" type="Camera3D" parent="CamSpatial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+current = true
+
+[node name="RayCast3d" type="RayCast3D" parent="CamSpatial/Camera3d"]
+
+[node name="OmniLight3d" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

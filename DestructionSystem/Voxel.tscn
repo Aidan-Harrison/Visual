@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://6f67n8kfblp7"]
+
+[ext_resource type="Script" path="res://Voxel.gd" id="1_nfkic"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5wmjl"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bmdtl"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_eiaxe"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="Voxel" type="RigidBody3D"]
+sleeping = true
+freeze = true
+script = ExtResource("1_nfkic")
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_5wmjl")
+
+[node name="ColCheck" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 32
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 24
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_bmdtl")
+draw_pass_1 = SubResource("BoxMesh_eiaxe")
+
+[connection signal="body_entered" from="." to="." method="_on_voxel_body_entered"]
+[connection signal="timeout" from="ColCheck" to="." method="_on_col_check_timeout"]

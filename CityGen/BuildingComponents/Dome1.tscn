@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="SphereMesh" id=1]
+radius = 8.0
+height = 16.0
+radial_segments = 16
+rings = 16
+
+[node name="MeshInstance" type="MeshInstance" groups=["Top"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+mesh = SubResource( 1 )
+software_skinning_transform_normals = false
+material/0 = null

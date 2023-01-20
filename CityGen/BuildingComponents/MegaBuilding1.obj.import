@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cp17a4sxotk5s"
+path="res://.godot/imported/MegaBuilding1.obj-a95ce2d5be6b869d2da196d15c888b90.mesh"
+
+[deps]
+
+files=["res://.godot/imported/MegaBuilding1.obj-a95ce2d5be6b869d2da196d15c888b90.mesh"]
+
+source_file="res://BuildingComponents/MegaBuilding1.obj"
+dest_files=["res://.godot/imported/MegaBuilding1.obj-a95ce2d5be6b869d2da196d15c888b90.mesh", "res://.godot/imported/MegaBuilding1.obj-a95ce2d5be6b869d2da196d15c888b90.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

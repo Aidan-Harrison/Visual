@@ -1,0 +1,6 @@
+MeshInstance3D
+OmniLight3D
+CollisionShape3D
+StaticBody3D
+RayCast3D
+Timer

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://lnonf8s17ptb"]
+
+[ext_resource type="Script" path="res://SimpleCollider.gd" id="1_t887y"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qewxj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4l0k2"]
+size = Vector3(2, 0.1, 2)
+
+[node name="SimpleCollider" type="StaticBody3D"]
+script = ExtResource("1_t887y")
+
+[node name="MeshInstance3d" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_qewxj")
+
+[node name="Area3d" type="Area3D" parent="."]
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="Area3d"]
+shape = SubResource("BoxShape3D_4l0k2")
+
+[connection signal="body_entered" from="Area3d" to="." method="_on_area_3d_body_entered"]

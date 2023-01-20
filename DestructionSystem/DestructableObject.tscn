@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://msyav4lpo2sn"]
+
+[ext_resource type="Script" path="res://DestructableObject.gd" id="1_u7wmy"]
+
+[node name="DestructableObject" type="Node3D"]
+script = ExtResource("1_u7wmy")

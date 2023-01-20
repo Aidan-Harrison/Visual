@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvkl30ik7wefd"]
+
+[ext_resource type="PackedScene" uid="uid://msyav4lpo2sn" path="res://DestructableObject.tscn" id="1_5gyve"]
+[ext_resource type="Script" path="res://world.gd" id="1_nmi2f"]
+[ext_resource type="PackedScene" uid="uid://pnhextst430" path="res://Tree/Oct_tree.tscn" id="2_0qyqn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_20x4p"]
+size = Vector3(24, 0.2, 24)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s77ff"]
+size = Vector2(64, 64)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k3jyh"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+turbulence_noise_strength = 4.89
+attractor_interaction_enabled = false
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_4sq64"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_nmi2f")
+
+[node name="DestructableObject" parent="." instance=ExtResource("1_5gyve")]
+
+[node name="CameraSpatial" type="Node3D" parent="."]
+
+[node name="Camera3d" type="Camera3D" parent="CameraSpatial"]
+transform = Transform3D(0.707107, 0.183013, -0.683013, 1.74735e-08, 0.965926, 0.258819, 0.707107, -0.183013, 0.683013, -7, 9, 14)
+
+[node name="RigidBody3d" type="RigidBody3D" parent="."]
+
+[node name="DirectionalLight3d" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 2)
+light_bake_mode = 0
+shadow_enabled = true
+
+[node name="StaticBody3d" type="StaticBody3D" parent="." groups=["Ground"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -4, 0)
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="StaticBody3d"]
+shape = SubResource("BoxShape3D_20x4p")
+
+[node name="MeshInstance3d" type="MeshInstance3D" parent="StaticBody3d"]
+mesh = SubResource("PlaneMesh_s77ff")
+
+[node name="GpuParticles3d" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, 0)
+cast_shadow = 0
+emitting = false
+amount = 500
+fixed_fps = 24
+process_material = SubResource("ParticleProcessMaterial_k3jyh")
+draw_pass_1 = SubResource("BoxMesh_4sq64")
+
+[node name="GpuParticlesCollisionBox3d" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -4, 0)
+extents = Vector3(6, 0.1, 6)
+
+[node name="Oct_tree" parent="." instance=ExtResource("2_0qyqn")]
+visible = false

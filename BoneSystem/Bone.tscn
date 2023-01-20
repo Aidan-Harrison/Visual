@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://lhdixo7wuj4d"]
+
+[ext_resource type="Script" path="res://Bone.gd" id="1_poaty"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g33vd"]
+size = Vector3(0.15, 0.15, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kybt1"]
+radius = 0.25
+height = 0.5
+radial_segments = 4
+rings = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_wqv4d"]
+radius = 0.25
+height = 0.5
+radial_segments = 4
+rings = 1
+
+[node name="Bone" type="Node3D"]
+script = ExtResource("1_poaty")
+
+[node name="MeshInstance3d" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+mesh = SubResource("BoxMesh_g33vd")
+
+[node name="J1" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_kybt1")
+
+[node name="J2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+mesh = SubResource("SphereMesh_wqv4d")
