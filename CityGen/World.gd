@@ -5,9 +5,13 @@ extends Node3D;
 @onready var chunk = preload("res://Chunk.tscn");
 # Roads
 @onready var r_mesh_1 = preload("res://Roads/CityGenRoadTile1.obj");
+
 # Mega buildings
 @onready var mB1 = preload("res://BuildingComponents/MegaBuilding1.obj");
 @onready var mB2 = preload("res://BuildingComponents/MegaBuilding2.obj");
+
+# Highways
+@onready var highwayStraight = preload("res://Roads/CityGenHighway.obj");
 
 # Extra
 @onready var treeMesh = preload("res://Extra/CityGenTrees.obj");
@@ -19,7 +23,7 @@ extends Node3D;
 @onready var road1 = preload("res://Roads/Road1.tscn");
 
 # Below auto scales
-var numberOfTiles : int = 1;
+var numberOfTiles : int = 4;
 # Chunks per tile | W * H
 var WIDTH : int = 6;
 var HEIGHT : int = 6;
@@ -39,9 +43,11 @@ var rOffsetStart : Vector3 = roadOffset;
 
 # Interface
 	# === ROADS, LIGHTS, MEGA BUILDINGS ===
-enum flag_indexes{ROADS, LIGHTS, MEGABUILD}; # Remove lights generation
-@export var generation_flags = [true,false,true];
+enum flag_indexes{ROADS, LIGHTS, MEGABUILD, HIGHWAY}; # Remove lights generation
+@export var generation_flags = [false,false,true,true];
 @export var uniform : bool = false;
+@export var highwaySectionLength : int = 3;
+@export var numOfHighways : int = 1; # Height is self solving
 
 func _ready():
 	m_buildings.append(mB1);
@@ -55,6 +61,11 @@ func _ready():
 		vegRay.debug_shape_thickness = 5;
 		vegRay.debug_shape_custom_color = Color.RED;
 	call_deferred("Tile");
+	if(generation_flags[flag_indexes.HIGHWAY]):
+		var height : float = 0.0;
+		for _i in numOfHighways:
+			Highway(height);
+			height -= 100.0;
 
 func AddToWorld(data):
 	for i in data:
@@ -71,6 +82,54 @@ func Tile() -> void:
 		if(i % numberOfTiles/2 == 0 && i != 0):
 			posOffset.x = 0;
 			posOffset.y += GlobalSettings.chunkZBounds * HEIGHT;
+			
+func Highway(height : float) -> void: # === Highway Generation ===
+	# Generate starting position
+		# Improve/fix starting generation!
+	var startingPos : Vector3 = Vector3(randi_range(GlobalSettings.chunkXBounds/2, GlobalSettings.chunkXBounds*WIDTH*2), height, randi_range(GlobalSettings.chunkZBounds/2, GlobalSettings.chunkZBounds*HEIGHT*2));
+	var head : Vector3 = startingPos; # Position of road
+	var validDirections = [true,true,true,true];
+	var counter : int = 0;
+	var direction : int = 1;
+	for i in range(WIDTH*HEIGHT*2):
+		if(!validDirections[0] && !validDirections[1] && !validDirections[2] && !validDirections[3]): # Cannot go anywhere
+			break;
+		var newHighwaySection : StaticBody3D = StaticBody3D.new();
+		add_child(newHighwaySection); # Add to tile!
+		var highwayMesh : MeshInstance3D = MeshInstance3D.new();
+		newHighwaySection.add_child(highwayMesh);
+		highwayMesh.mesh = highwayStraight;
+		highwayMesh.set_surface_override_material(0, baseMat);
+		var highwayCol : CollisionShape3D = CollisionShape3D.new();
+		newHighwaySection.add_child(highwayCol);
+		highwayMesh.scale *= GlobalSettings.chunkXBounds;
+		highwayCol.scale *= GlobalSettings.chunkXBounds; #???
+		newHighwaySection.position = head;
+		# Check around head for collisions or bounds
+		if(head.x - GlobalSettings.chunkXBounds <= 0.0): # X Bounds check
+			validDirections[0] = false; # left is no longer valid
+		if(head.x + GlobalSettings.chunkXBounds >= GlobalSettings.chunkXBounds*WIDTH):
+			validDirections[1] = false;
+		if(head.z - GlobalSettings.chunkZBounds <= 0.0):
+			validDirections[2] = false;
+		if(head.z + GlobalSettings.chunkZBounds >= GlobalSettings.chunkZBounds*HEIGHT):
+			validDirections[3] = false;
+		if(counter % highwaySectionLength == 0): # Only change direction every x amount of times
+			counter = 0;
+			direction = randi_range(0,3); # Highway pathing
+			while(!validDirections[direction]):
+				direction = randi_range(0,3);
+		match(direction):
+			0: 
+				head.x -= GlobalSettings.chunkXBounds; # Left
+				newHighwaySection.rotation.y = 1.57;
+			1: 
+				head.x += GlobalSettings.chunkXBounds; # Right
+				newHighwaySection.rotation.y = 1.57;
+			2: head.z -= GlobalSettings.chunkZBounds; # Up
+			3: head.z += GlobalSettings.chunkZBounds; # Down
+		counter += 1;
+		validDirections = [true,true,true,true];
 
 func Generate() -> Node3D:
 	# === Tile Generation ===
@@ -84,12 +143,12 @@ func Generate() -> Node3D:
 	newTile.add_to_group("Ground");
 	for i in WIDTH: # Convert to single for loop?
 		for j in HEIGHT:
-		# === Chunk Generation ===
+		# === Chunk Generation === | IMPLEMENT WATER BODY GENERATION
 			var newBase : MeshInstance3D = MeshInstance3D.new(); # Create new plane mesh as a base
 			newTile.add_child(newBase);
 			newBase.mesh = PlaneMesh.new();
 			newBase.set_surface_override_material(0, baseMat);
-			# Create chunk instance | Type of chunk is based on district
+			# Create chunk instance | Type of chunk is based on district | IMPLEMENT
 			var newChunk = chunk.instantiate();
 			newTile.add_child(newChunk);
 			if(!uniform):
@@ -99,25 +158,21 @@ func Generate() -> Node3D:
 			newBase.global_transform.origin = Vector3(newChunk.global_transform.origin.x+GlobalSettings.chunkXBounds/2, 0.0, newChunk.global_transform.origin.z+GlobalSettings.chunkZBounds/2);
 			newCol.global_transform.origin = Vector3(newChunk.global_transform.origin.x/2+GlobalSettings.chunkXBounds/2, 0.0, newChunk.global_transform.origin.z/2+GlobalSettings.chunkZBounds/2);
 			newBase.mesh.size = Vector2(GlobalSettings.chunkXBounds, GlobalSettings.chunkZBounds);
-			# === Road Generation ===
+		# === Road Generation ===
 			if(generation_flags[flag_indexes.ROADS]): # Uniformly generated, rotation changed, roads ALWAYS match
 				var genRoads : int = randi_range(0,1);
 				if(!genRoads):
 					continue;
-				for k in range(0, WIDTH):
+				for k in range(0, (WIDTH*HEIGHT)):
 					var newRoad : MeshInstance3D = MeshInstance3D.new();
 					newTile.add_child(newRoad);
 					newRoad.mesh = r_mesh_1;
-					newRoad.scale.x *= GlobalSettings.chunkXBounds/100;
-					newRoad.scale.z *= GlobalSettings.chunkZBounds/100;
-					newRoad.position = roadOffset;
+					newRoad.scale = Vector3(GlobalSettings.chunkXBounds/100, 1.0, GlobalSettings.chunkZBounds/100);
 					roadOffset.x += GlobalSettings.chunkXBounds/WIDTH;
 					if(roadOffset.x >= GlobalSettings.chunkXBounds*WIDTH):
-						roadOffset.x = GlobalSettings.chunkXBounds/2;
+						roadOffset.x = 0.0;
 						roadOffset.z += GlobalSettings.chunkZBounds/HEIGHT;
-				roadOffset.z += GlobalSettings.chunkZBounds;
-				rOffsetStart.z = roadOffset.z;
-				#roadOffset.x = 0.0;
+					newRoad.position = roadOffset;
 		# === Light Generation ===
 		if(generation_flags[flag_indexes.LIGHTS]):
 			var newLight = OmniLight3D.new();
@@ -140,7 +195,6 @@ func Generate() -> Node3D:
 			newMegaBuilding.global_transform.origin.x = randf_range(0.0, GlobalSettings.chunkXBounds*WIDTH);
 			newMegaBuilding.global_transform.origin.z = randf_range(0.0, GlobalSettings.chunkZBounds*HEIGHT);
 			newMegaBuilding.set_surface_override_material(0, buildMat);
-	
 	return newTile;
 
 func _physics_process(delta) -> void: # Vegetation generation

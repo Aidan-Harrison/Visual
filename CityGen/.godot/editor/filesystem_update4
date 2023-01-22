@@ -1,9 +1,7 @@
 res://Building.tscn
-res://Extra/BuildingMat.tres
 res://Extra/TreeMat.tres
 res://Extra/BaseMat.tres
 res://World.tscn
 res://Chunk.tscn
 res://Sky.tscn
 res://World.gd
-res://Chunk.gd
