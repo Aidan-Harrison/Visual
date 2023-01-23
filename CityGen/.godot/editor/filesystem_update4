@@ -1,7 +1,13 @@
-res://Building.tscn
+res://World.tscn
+res://Extra/BuildingMat.tres
 res://Extra/TreeMat.tres
 res://Extra/BaseMat.tres
-res://World.tscn
+res://Shaders/Clouds.tres
 res://Chunk.tscn
 res://Sky.tscn
+res://Player.tscn
+res://VFX/Cars.tscn
+res://Shaders/Clouds.gdshader
 res://World.gd
+res://Player.gd
+res://Chunk.gd

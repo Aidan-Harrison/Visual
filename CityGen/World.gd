@@ -1,7 +1,6 @@
 extends Node3D;
 
 # Core
-@onready var building = preload("res://Building.tscn");
 @onready var chunk = preload("res://Chunk.tscn");
 # Roads
 @onready var r_mesh_1 = preload("res://Roads/CityGenRoadTile1.obj");
@@ -13,17 +12,19 @@ extends Node3D;
 # Highways
 @onready var highwayStraight = preload("res://Roads/CityGenHighway.obj");
 
+# VFX
+@onready var flyingCars = preload("res://VFX/Cars.tscn");
+
 # Extra
 @onready var treeMesh = preload("res://Extra/CityGenTrees.obj");
-@onready var treeMat = preload("res://Extra/TreeMat.tres");
-@onready var baseMat = preload("res://Extra/BaseMat.tres");
+@onready var treeMat  = preload("res://Extra/TreeMat.tres");
+@onready var baseMat  = preload("res://Extra/BaseMat.tres");
 @onready var buildMat = preload("res://Extra/BuildingMat.tres");
 
 # Roads
 @onready var road1 = preload("res://Roads/Road1.tscn");
 
 # Below auto scales
-var numberOfTiles : int = 4;
 # Chunks per tile | W * H
 var WIDTH : int = 6;
 var HEIGHT : int = 6;
@@ -41,15 +42,25 @@ var vegStepSize : float = 225.0;
 var roadOffset : Vector3 = Vector3(0.0, 7.0, 0.0); # Starts at centre of first tile
 var rOffsetStart : Vector3 = roadOffset;
 
+# Make so vegetation intially starts at xBounds/2, zBounds/2
+
 # Interface
 	# === ROADS, LIGHTS, MEGA BUILDINGS ===
-enum flag_indexes{ROADS, LIGHTS, MEGABUILD, HIGHWAY}; # Remove lights generation
-@export var generation_flags = [false,false,true,true];
+enum flag_indexes{ROADS, LIGHTS, MEGABUILD, HIGHWAY, VEGETATION, RIVER, CARS}; # Remove lights generation
+@export var generation_flags = [false,false,true,true,true,true,true]; # Make UI only, not export
+@export var numberOfTiles : int = 4;
 @export var uniform : bool = false;
 @export var highwaySectionLength : int = 3;
-@export var numOfHighways : int = 1; # Height is self solving
+@export var numOfHighways : int = 2; # Height is self solving
+# Interface | Debugging
+@export var stats : bool = false;
+@export var segmentDebug : bool = false;
 
-func _ready():
+func _ready() -> void:
+	if(generation_flags[flag_indexes.VEGETATION]):
+		set_physics_process(true); 
+	else:
+		set_physics_process(false);
 	m_buildings.append(mB1);
 	m_buildings.append(mB2);
 	get_viewport().debug_draw = 0;
@@ -57,7 +68,7 @@ func _ready():
 		var vegRay : RayCast3D = RayCast3D.new();
 		add_child(vegRay);
 		vRays.append(vegRay);
-		vegRay.target_position.y = -1000;
+		vegRay.target_position.y = -1000.0;
 		vegRay.debug_shape_thickness = 5;
 		vegRay.debug_shape_custom_color = Color.RED;
 	call_deferred("Tile");
@@ -67,16 +78,12 @@ func _ready():
 			Highway(height);
 			height -= 100.0;
 
-func AddToWorld(data):
-	for i in data:
-		add_child(data);
-
 func Tile() -> void:
 	var posOffset : Vector2 = Vector2.ZERO;
 	for i in numberOfTiles:
 		vRays[i].position = Vector3(posOffset.x, 750.0, posOffset.y);
 		iVRayPos.append(vRays[i].position);
-		tiles.append(Generate()); # Genereate tile of chunks
+		tiles.append(Generate()); # Generate tile of chunks
 		tiles[i].global_transform.origin = Vector3(posOffset.x, 0.0, posOffset.y);
 		posOffset.x += GlobalSettings.chunkXBounds * WIDTH;
 		if(i % numberOfTiles/2 == 0 && i != 0):
@@ -187,14 +194,24 @@ func Generate() -> Node3D:
 			if(!buildingToAdd):
 				continue;
 			buildingToAdd = randi_range(0, m_buildings.size());
-			var newMegaBuilding = MeshInstance3D.new();
+			var newMegaBuilding = StaticBody3D.new();
 			newTile.add_child(newMegaBuilding);
-			newMegaBuilding.mesh = m_buildings[buildingToAdd-1]; #? Indexing
-			var mScale : float = randf_range(50.0, 200.0);
+			var newMegaMesh : MeshInstance3D = MeshInstance3D.new();
+			newMegaBuilding.add_child(newMegaMesh);
+			newMegaMesh.mesh = m_buildings[buildingToAdd-1]; #? Indexing
+			var mScale : float = randf_range(50.0, 215.0);
 			newMegaBuilding.scale = Vector3(mScale,mScale,mScale);
 			newMegaBuilding.global_transform.origin.x = randf_range(0.0, GlobalSettings.chunkXBounds*WIDTH);
 			newMegaBuilding.global_transform.origin.z = randf_range(0.0, GlobalSettings.chunkZBounds*HEIGHT);
-			newMegaBuilding.set_surface_override_material(0, buildMat);
+			newMegaMesh.set_surface_override_material(0, buildMat);
+			# Light
+			var newLight : OmniLight3D = OmniLight3D.new();
+			add_child(newLight);
+			newLight.omni_range = GlobalSettings.chunkXBounds*4;
+			newLight.light_energy = 250.0;
+			newLight.position = newMegaBuilding.global_transform.origin;
+			newLight.light_color = Color.BLANCHED_ALMOND;
+			# Cull colliding assets
 	return newTile;
 
 func _physics_process(delta) -> void: # Vegetation generation
@@ -205,12 +222,14 @@ func _physics_process(delta) -> void: # Vegetation generation
 			tiles[i].add_child(newTreeMesh);
 			newTreeMesh.mesh = treeMesh;
 			newTreeMesh.position = vRays[i].get_collision_point();
-			newTreeMesh.scale.x *= 2.0;
-			newTreeMesh.scale.z *= 2.0;
 			newTreeMesh.rotation.y = randf_range(0.0, 360.0);
-			newTreeMesh.cast_shadow = 0;
+			#newTreeMesh.cast_shadow = 0;
 			newTreeMesh.set_surface_override_material(0, treeMat);
 		vRays[i].position.x += vegStepSize;
 		if(vRays[i].position.x > GlobalSettings.chunkXBounds*WIDTH):
 			vRays[i].position.x = 0.0;
 			vRays[i].position.z += vegStepSize;
+			if(vRays[i].position.z > GlobalSettings.chunkZBounds*HEIGHT):
+				# Stop said vRay
+				vRays.remove_at(i);
+				#set_physics_process(false);

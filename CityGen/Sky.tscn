@@ -1,5 +1,25 @@
-[gd_scene format=3 uid="uid://bafh2vq06e86n"]
+[gd_scene load_steps=3 format=3 uid="uid://bafh2vq06e86n"]
+
+[ext_resource type="Material" uid="uid://o8atwqbsspe3" path="res://Shaders/Clouds.tres" id="1_4ohkw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ohuek"]
+material = ExtResource("1_4ohkw")
+size = Vector2(750, 750)
 
 [node name="Sky" type="Node3D"]
 
 [node name="CloudLayer" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ohuek")
+
+[node name="CloudLayer2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -750)
+mesh = SubResource("PlaneMesh_ohuek")
+
+[node name="CloudLayer3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 750, 2.08165e-12, 2.08165e-12)
+mesh = SubResource("PlaneMesh_ohuek")
+
+[node name="CloudLayer4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 750, 2.08165e-12, -750)
+mesh = SubResource("PlaneMesh_ohuek")

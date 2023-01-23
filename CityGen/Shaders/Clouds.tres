@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://o8atwqbsspe3"]
+
+[ext_resource type="Shader" path="res://Shaders/Clouds.gdshader" id="1_ld2lb"]
+[ext_resource type="Texture2D" uid="uid://cmhnkqkqkw5ey" path="res://Textures/CloudTransparent.png" id="2_7pdm4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ld2lb")
+shader_parameter/tile_factor = Vector2(2, 2)
+shader_parameter/skyTexture = ExtResource("2_7pdm4")
