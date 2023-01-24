@@ -1,14 +1,53 @@
-extends Node3D
+extends Node3D;
 
 @onready var mesh = $MultiMeshInstance;
 @onready var col = $CollisionShape3d;
+@onready var buildingPlacer = $BuildingPlacer;
+@onready var placeTimer = $PlacementTimer;
 
 var colours = [Color.AQUA,Color.REBECCA_PURPLE,Color.RED,Color.CHARTREUSE,Color.DARK_ORANGE];
 var cars = [];
 
-func _ready():
-	col.shape.size = Vector3(GlobalSettings.chunkXBounds*0.85, 10.0, GlobalSettings.chunkZBounds*0.85);
+# === Building generation ===
+var offset : Vector3 = Vector3(0.0, 50.0, 0.0);
+var index : int = 0;
+var height : float = 1.0;
+
+var world_index : int = 0; # Current iteration of world index, e.g. 1,2,3,...
+
+func Generate(rot : float) -> void:
+	col.shape.size = Vector3(GlobalSettings.chunkXBounds, 1.0, GlobalSettings.chunkZBounds); # pointless now?
 	col.position = Vector3(GlobalSettings.chunkXBounds/2, 0.0, GlobalSettings.chunkZBounds/2);
+	
+	# Create road
+	var newRoad : StaticBody3D = StaticBody3D.new();
+	add_child(newRoad);
+	var newRoadMesh : MeshInstance3D = MeshInstance3D.new();
+	newRoad.add_child(newRoadMesh);
+	newRoadMesh.mesh = GlobalSettings.road1;
+	newRoadMesh.create_trimesh_collision(); 
+	# Alter height?
+	newRoad.scale = Vector3(GlobalSettings.chunkXBounds, GlobalSettings.chunkXBounds, GlobalSettings.chunkZBounds);
+	newRoad.position = Vector3(GlobalSettings.chunkXBounds/2, 2.5, GlobalSettings.chunkZBounds/2);
+	newRoad.rotation.y = deg_to_rad(rot);
+	#set_physics_process(true);
+
+func _ready() -> void:
+	Generate(0.0);
+	#set_physics_process(false);
+#	col.shape.size = Vector3(GlobalSettings.chunkXBounds*0.85, 10.0, GlobalSettings.chunkZBounds*0.85);
+#	col.position = Vector3(GlobalSettings.chunkXBounds/2, 0.0, GlobalSettings.chunkZBounds/2);
+#
+#	# Create road
+#	var newRoad : StaticBody3D = StaticBody3D.new();
+#	add_child(newRoad);
+#	var newRoadMesh : MeshInstance3D = MeshInstance3D.new();
+#	newRoad.add_child(newRoadMesh);
+#	newRoadMesh.mesh = GlobalSettings.road1;
+#	newRoadMesh.create_trimesh_collision(); 
+#	# Alter height?
+#	newRoad.scale = Vector3(GlobalSettings.chunkXBounds, GlobalSettings.chunkXBounds, GlobalSettings.chunkZBounds);
+#	newRoad.position = Vector3(GlobalSettings.chunkXBounds/2, 2.5, GlobalSettings.chunkZBounds/2);
 	
 	# Light generation
 #	var chance = randf_range(0.0, 1.0);
@@ -25,29 +64,38 @@ func _ready():
 #	colours.append(Color.RED);
 #	colours.append(Color.CHARTREUSE);
 #	colours.append(Color.DARK_ORANGE);
-	generator();
+	#generator();
 
-func generator():
+func _physics_process(delta) -> void:
+	buildingPlacer.position = offset;
+	offset.x += 10.0;
+	if(offset.x >= GlobalSettings.chunkXBounds):
+		offset.x = 0.0;
+		offset.z += 10.0;
+		if(offset.z >= GlobalSettings.chunkZBounds):
+			set_physics_process(false);
+			buildingPlacer.queue_free();
+			placeTimer.queue_free();
+
+func generator() -> void:
 	var xPos : int = 0;
 	var zPos : int = 0;
 	for i in range(0, mesh.multimesh.get_instance_count()):
 		var xCol = false;
 		var zCol = false;
 		var height : int = int(randf_range(2.0,5.0)); #???
-		#var index : int = int(randi_range(0.0,colours.size()))
 		xPos = int(randi_range(0.0, GlobalSettings.chunkXBounds));
 		zPos = int(randi_range(0.0, GlobalSettings.chunkZBounds));
-#		xPositions.append(xCount);
-#		zPositions.append(zCount);
-#		for j in range(0, xPositions.size()-1):
-#			if(xPositions[j] < xCount + 10 && xPositions[j] + 10 > xCount):
-#				xCol = true
-#				break
-#		for k in range(0, zPositions.size()-1):
-#			if(zPositions[k] < zCount + 10 && zPositions[k] + 10 > zCount):
-#				zCol = true
-#				break
-#		if(xCol && zCol):
-#			continue
 		mesh.multimesh.set_instance_transform(i, Transform3D(Vector3(1.5,0.0,0.0), Vector3(0.0,height,0.0), Vector3(0.0,0.0,1.5), Vector3(xPos,0.0,zPos)));
 		# Do rotation
+
+func _on_placement_timer_timeout():
+	if(buildingPlacer.is_colliding() && buildingPlacer.get_collider().is_in_group("Ground")):
+		#mesh.position = buildingPlacer.get_collision_point();
+		print('HIT');
+		if(index < mesh.multimesh.instance_count):
+			# Convert local coords to global, ray intersction is correct, inherent offset is problematic
+			#mesh.multimesh.set_instance_transform(index, Transform3D(Vector3(1.0,0.0,0.0), Vector3(0.0,height,0.0), Vector3(0.0,0.0,1.0), buildingPlacer.get_collision_point()-world_index*Vector3(GlobalSettings.chunkXBounds*GlobalSettings.WIDTH, 0.0, GlobalSettings.chunkZBounds*GlobalSettings.HEIGHT)));
+			mesh.multimesh.set_instance_transform(index, Transform3D(Vector3(1.0,0.0,0.0), Vector3(0.0,height,0.0), Vector3(0.0,0.0,1.0), buildingPlacer.get_collision_point()));
+			index+=1;
+			offset.z+=15.0; # Alter by size of building | May be pointless

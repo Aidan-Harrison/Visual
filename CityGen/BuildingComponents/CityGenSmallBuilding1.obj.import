@@ -16,6 +16,6 @@ dest_files=["res://.godot/imported/CityGenSmallBuilding1.obj-ebda6e37aea30b39596
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3(4, 4, 4)
+scale_mesh=Vector3(3, 3, 3)
 offset_mesh=Vector3(0, 0, 0)
 optimize_mesh=true

@@ -1,8 +1,9 @@
-GPUParticles3D
 CollisionShape3D
-Area3D
-MeshInstance3D
-OmniLight3D
 StaticBody3D
-RayCast3D
 Timer
+MeshInstance3D
+Camera3D
+RayCast3D
+GPUParticles3D
+Area3D
+OmniLight3D

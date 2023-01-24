@@ -88,7 +88,6 @@ WalkMode={
 
 [physics]
 
-common/physics_ticks_per_second=120
 common/enable_pause_aware_picking=true
 
 [rendering]

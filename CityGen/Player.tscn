@@ -25,19 +25,22 @@ fov = 80.0
 far = 20000.0
 script = ExtResource("2_e856b")
 
-[node name="CarStream" parent="." instance=ExtResource("3_e5ve4")]
-transform = Transform3D(-1.31134e-07, 3.64957e-31, -3, 2.09272e-15, 3, 6.01412e-23, 3, -2.09272e-15, -1.31134e-07, 33, -2.12033e-14, -27.79)
-
-[node name="CarStream2" parent="." instance=ExtResource("3_e5ve4")]
-transform = Transform3D(-3, 2.09272e-15, 2.62268e-07, 2.09272e-15, 3, -2.09272e-15, -2.62268e-07, -2.09272e-15, -3, -16, -8, -19.79)
-
-[node name="CarStream3" parent="." instance=ExtResource("3_e5ve4")]
-transform = Transform3D(3.93403e-07, 2.09272e-15, 3, 4.23516e-22, 3, -2.09272e-15, -3, -1.05879e-22, 3.93403e-07, -22, 14, -21.79)
-
 [node name="s" type="Area3D" parent="."]
 
 [node name="Col" type="CollisionShape3D" parent="s"]
 shape = SubResource("SphereShape3D_g08dc")
+
+[node name="CarStream" parent="." instance=ExtResource("3_e5ve4")]
+transform = Transform3D(3, -3.64957e-31, 0, -3.64957e-31, 3, 0, 0, 0, 3, 1.39515e-14, -12, -52)
+visible = false
+
+[node name="CarStream2" parent="." instance=ExtResource("3_e5ve4")]
+transform = Transform3D(-1.31134e-07, 1.04636e-15, 3, 1.04636e-15, 3, -1.04636e-15, -3, 1.04636e-15, -1.31134e-07, 16, 10, -40)
+visible = false
+
+[node name="CarStream3" parent="." instance=ExtResource("3_e5ve4")]
+transform = Transform3D(-2.59808, 2.85871e-15, -1.5, 3.52208e-15, 3, -3.82994e-16, 1.5, -2.09272e-15, -2.59808, -50, 3, -25)
+visible = false
 
 [connection signal="body_entered" from="s" to="." method="_on_near_field_body_entered"]
 [connection signal="body_exited" from="s" to="." method="_on_near_field_body_exited"]

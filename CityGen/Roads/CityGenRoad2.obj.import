@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dpvxsn1unkq8c"
+path="res://.godot/imported/CityGenRoad2.obj-077af33b56c6ad6c6d756149cb48bdb7.mesh"
+
+[deps]
+
+files=["res://.godot/imported/CityGenRoad2.obj-077af33b56c6ad6c6d756149cb48bdb7.mesh"]
+
+source_file="res://Roads/CityGenRoad2.obj"
+dest_files=["res://.godot/imported/CityGenRoad2.obj-077af33b56c6ad6c6d756149cb48bdb7.mesh", "res://.godot/imported/CityGenRoad2.obj-077af33b56c6ad6c6d756149cb48bdb7.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
