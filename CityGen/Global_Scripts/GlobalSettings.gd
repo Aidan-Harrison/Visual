@@ -4,9 +4,12 @@ extends Node
 var chunkXBounds : int = 100;
 var chunkZBounds : int = 100;
 
-# Temp?
-var WIDTH : int = 6; # Might not need to keep!
-var HEIGHT : int = 6;
-
 # References
 @onready var road1 = preload("res://Roads/CityGenRoad2.obj");
+
+# Materials/Shaders
+@onready var baseMat = preload("res://Extra/BaseMat.tres");
+
+# Vegetation
+@onready var treeMesh = preload("res://Assets/CityGenTrees.obj");
+@onready var treeMesh2 = preload("res://Assets/CityGenTrees2.obj");

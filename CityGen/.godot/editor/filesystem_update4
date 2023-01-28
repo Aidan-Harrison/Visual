@@ -1,12 +1,13 @@
-res://VFX/Cars.tscn
+res://World.tscn
 res://Extra/BuildingMat.tres
 res://Extra/TreeMat.tres
 res://Extra/BaseMat.tres
 res://Shaders/Clouds.tres
-res://World.tscn
 res://Chunk.tscn
 res://Sky.tscn
 res://Player.tscn
+res://VFX/Cars.tscn
 res://World.gd
-res://Chunk.gd
 res://Global_Scripts/GlobalSettings.gd
+res://Player.gd
+res://Chunk.gd

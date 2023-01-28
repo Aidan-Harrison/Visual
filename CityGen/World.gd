@@ -16,7 +16,6 @@ extends Node3D;
 @onready var flyingCars = preload("res://VFX/Cars.tscn");
 
 # Extra
-@onready var treeMesh = preload("res://Extra/CityGenTrees.obj");
 @onready var treeMat  = preload("res://Extra/TreeMat.tres");
 @onready var baseMat  = preload("res://Extra/BaseMat.tres");
 @onready var buildMat = preload("res://Extra/BuildingMat.tres");
@@ -26,15 +25,17 @@ extends Node3D;
 
 # Below auto scales
 	# Chunks per tile | W * H
-var WIDTH : int = 6;
-var HEIGHT : int = 6;
+var WIDTH : int = 4;
+var HEIGHT : int = 4;
 var roads = [
 	[]
 ];
 var m_buildings = [];
 var tiles = [];
-var districts = []; # Map instead?
+var tileTypes = []; # Base type generation | Building, vegetation, body-of-water, etc.
+var districts = []; # Building type generation
 var vRays = [];
+var vegetation = {}; # Index | LOD
 var iVRayPos = []; # Initial positions of vegetation rays
 var vRayOffset : Vector3 = Vector3.ZERO;
 var light_colors = [Color.RED, Color.BLANCHED_ALMOND, Color.DARK_ORANGE];
@@ -45,12 +46,17 @@ var chunkRotation : float = 0.0;
 var testIndex : int = 1;
 
 # Make so vegetation intially starts at xBounds/2, zBounds/2
+# Make base tile generation uniform
+	# 8 = 4x4
+	# 16 = 8x8
+
+# Sun rotation = -6.3, -82, 110.6
 
 # Interface
 	# === ROADS, LIGHTS, MEGA BUILDINGS ===
 enum flag_indexes{ROADS, LIGHTS, MEGABUILD, HIGHWAY, VEGETATION, RIVER, CARS}; # Remove lights generation
-@export var generation_flags = [false,false,true,false,false,false,false]; # Make UI only, not export
-@export var numberOfTiles : int = 1;
+@export var generation_flags = [false,false,true,true,true,false,false]; # Make UI only, not export
+@export var numberOfTiles : int = 32; # Max: 128
 @export var uniform : bool = true;
 @export var highwaySectionLength : int = 3;
 @export var numOfHighways : int = 2; # Height is self solving
@@ -70,6 +76,7 @@ func _ready() -> void:
 			#vegRay.debug_shape_custom_color = Color.RED;
 	else:
 		set_physics_process(false);
+	# Change, global script?
 	m_buildings.append(mB1);
 	m_buildings.append(mB2);
 	get_viewport().debug_draw = 0;
@@ -79,20 +86,22 @@ func _ready() -> void:
 		for _i in numOfHighways:
 			Highway(height);
 			height -= 100.0;
+	set_physics_process(false);
 
 func Tile() -> void:
 	var posOffset : Vector2 = Vector2.ZERO;
-	for i in numberOfTiles:
-		if(generation_flags[flag_indexes.VEGETATION]): # !!!!MOVE!!!!!
-			vRays[i].position = Vector3(posOffset.x, 750.0, posOffset.y);
-			iVRayPos.append(vRays[i].position);
+	for i in numberOfTiles: # Fix this to be uniform!!!!!
+		#if(generation_flags[flag_indexes.VEGETATION]): # !!!!MOVE!!!!!
+			#vRays[i].position = Vector3(posOffset.x, 750.0, posOffset.y);
+			#iVRayPos.append(vRays[i].position);
 		tiles.append(Generate()); # Generate tile of chunks
 		tiles[i].global_transform.origin = Vector3(posOffset.x, 0.0, posOffset.y);
 		posOffset.x += GlobalSettings.chunkXBounds * WIDTH;
-		if(posOffset.x >= GlobalSettings.chunkXBounds*WIDTH*numberOfTiles*0.1): # FIX!!! Always make square
+		if(posOffset.x >= GlobalSettings.chunkXBounds*WIDTH*10):
 			posOffset.x = 0;
 			posOffset.y += GlobalSettings.chunkZBounds * HEIGHT;
-		testIndex = i; # Ideally remove post world coord fix
+		#if(posOffset.x >= GlobalSettings.chunkXBounds*WIDTH*numberOfTiles*0.1): # FIX!!! Always make square
+		#testIndex = i; # Ideally remove post world coord fix
 			
 func Highway(height : float) -> void: # === Highway Generation ===
 	# Generate starting position
@@ -102,7 +111,7 @@ func Highway(height : float) -> void: # === Highway Generation ===
 	var validDirections = [true,true,true,true];
 	var counter : int = 0;
 	var direction : int = 1;
-	for i in range(WIDTH*HEIGHT*2): #? -> *2
+	for i in range(WIDTH*HEIGHT*numberOfTiles): #? -> *2
 		if(!validDirections[0] && !validDirections[1] && !validDirections[2] && !validDirections[3]): # Cannot go anywhere
 			break;
 		var newHighwaySection : StaticBody3D = StaticBody3D.new();
@@ -119,11 +128,11 @@ func Highway(height : float) -> void: # === Highway Generation ===
 		# Check around head for collisions or bounds
 		if(head.x - GlobalSettings.chunkXBounds <= 0.0): # X Bounds check
 			validDirections[0] = false; # left is no longer valid
-		if(head.x + GlobalSettings.chunkXBounds >= GlobalSettings.chunkXBounds*WIDTH):
+		if(head.x + GlobalSettings.chunkXBounds >= GlobalSettings.chunkXBounds*WIDTH*numberOfTiles): # Fix
 			validDirections[1] = false;
 		if(head.z - GlobalSettings.chunkZBounds <= 0.0):
 			validDirections[2] = false;
-		if(head.z + GlobalSettings.chunkZBounds >= GlobalSettings.chunkZBounds*HEIGHT):
+		if(head.z + GlobalSettings.chunkZBounds >= GlobalSettings.chunkZBounds*HEIGHT*numberOfTiles): # Fix
 			validDirections[3] = false;
 		if(counter % highwaySectionLength == 0): # Only change direction every x amount of times
 			counter = 0;
@@ -144,15 +153,26 @@ func Highway(height : float) -> void: # === Highway Generation ===
 
 func Generate() -> Node3D:
 	# === Tile Generation ===
+	districts.append(randi_range(0,3)); # Building districts
+	tileTypes.append(randf_range(0.0, 1.0));
 	var newTile : StaticBody3D = StaticBody3D.new(); # Stores EVERYTHING
 	add_child(newTile);
 	var newCol : CollisionShape3D = CollisionShape3D.new(); # Used for ray collision
 	newTile.add_child(newCol);
-	districts.append(randi_range(0,3));
 	newCol.shape = BoxShape3D.new();
 	newCol.shape.size = Vector3(GlobalSettings.chunkXBounds * WIDTH, 1.0, GlobalSettings.chunkZBounds * HEIGHT);
 	newTile.add_to_group("Ground");
 	for i in WIDTH: # Convert to single for loop?
+		# === Light Generation === | Change!? | Remove?
+		if(generation_flags[flag_indexes.LIGHTS]):
+			var chance : float = randf_range(0.0, 1.0);
+			if(chance > 0.9):
+				var newLight : OmniLight3D = OmniLight3D.new();
+				add_child(newLight);
+				newLight.omni_range = 250;
+				newLight.light_energy = 300.0;
+				#newLight.light_color = light_colors[randi_range(0, light_colors.size()-1)];
+				newLight.position = Vector3(randf_range(0.0, GlobalSettings.chunkXBounds*WIDTH*numberOfTiles), 0.0, randf_range(0.0, GlobalSettings.chunkZBounds*HEIGHT*numberOfTiles));
 		for j in HEIGHT:
 		# === Chunk Generation === | IMPLEMENT WATER BODY GENERATION
 			var newBase : MeshInstance3D = MeshInstance3D.new(); # Create new plane mesh as a base
@@ -160,15 +180,31 @@ func Generate() -> Node3D:
 			newBase.mesh = PlaneMesh.new();
 			newBase.set_surface_override_material(0, baseMat);
 			# Create chunk instance | Type of chunk is based on district | IMPLEMENT
-			var newChunk = chunk.instantiate();
+			var newChunk = null;
+			var type : int = randi_range(0, 1); # Define chunk type
+			match(type): # Zone generation, too random 
+				0: # Standard chunk | roads and/or buildings
+					newChunk = chunk.instantiate();
+				1: # Vegetation
+					newChunk = MeshInstance3D.new();
+					newChunk.mesh = GlobalSettings.treeMesh2;
+					# Auto calculate Y!
+					newChunk.scale = Vector3(GlobalSettings.chunkXBounds+(GlobalSettings.chunkXBounds*0.2), 75.0, GlobalSettings.chunkZBounds+(GlobalSettings.chunkZBounds*0.2));
+					newChunk.set_surface_override_material(0, treeMat);
+					newChunk.cast_shadow = false;
+					newChunk.rotation.y = deg_to_rad(chunkRotation); # Merge below, don't pass to generate argument!
+					vegetation[i] = newChunk;
 			newTile.add_child(newChunk);
-			newChunk.Generate(chunkRotation); # Run chunk generation, pass global rotation
-			chunkRotation += 90.0;
-			newChunk.world_index = testIndex; # Ideally remove post world coord fix
+			chunkRotation += 90.0; # Apply to trees also!
+			if(!type): # Account for building generation
+				newChunk.Generate(chunkRotation); # Run chunk generation, passes global rotation
 			#if(!uniform):
 				#var rot : float = randf_range(0.0, 360);
 				#newChunk.rotation.y = rot; # Rotate entire chunk
 			newChunk.position = Vector3(i*GlobalSettings.chunkXBounds, 0.0, j*GlobalSettings.chunkZBounds);
+			if(type):
+				newChunk.position += Vector3(GlobalSettings.chunkXBounds/2, 5.0, GlobalSettings.chunkZBounds/2);
+			# Fix with vegeation! Optimise entire generation method?
 			newBase.position = Vector3(newChunk.position.x+GlobalSettings.chunkXBounds/2, 0.0, newChunk.position.z+GlobalSettings.chunkZBounds/2);
 			newCol.global_transform.origin = Vector3(newChunk.global_transform.origin.x/2+GlobalSettings.chunkXBounds/2, 0.0, newChunk.global_transform.origin.z/2+GlobalSettings.chunkZBounds/2);
 			newBase.mesh.size = Vector2(GlobalSettings.chunkXBounds, GlobalSettings.chunkZBounds);
@@ -187,21 +223,13 @@ func Generate() -> Node3D:
 						roadOffset.x = 0.0;
 						roadOffset.z += GlobalSettings.chunkZBounds/HEIGHT;
 					newRoad.position = roadOffset;
-		# === Light Generation === | Change!?
-		if(generation_flags[flag_indexes.LIGHTS]):
-			var newLight = OmniLight3D.new();
-			newTile.add_child(newLight);
-			newLight.omni_range = 10000;
-			newLight.light_energy = 100.0;
-			newLight.light_color = light_colors[randi_range(0,light_colors.size()-1)];
-			newLight.position = Vector3(GlobalSettings.chunkXBounds/2, 0.0, GlobalSettings.chunkZBounds/2);
 		# === Mega Building Generation ===
 		if(generation_flags[flag_indexes.MEGABUILD]):
 			var buildingToAdd : float = randf_range(0.0, 1.0);
 			if(buildingToAdd < 0.9):
 				continue;
 			buildingToAdd = randi_range(0, m_buildings.size());
-			var newMegaBuilding : StaticBody3D = StaticBody3D.new();
+			var newMegaBuilding : Area3D = Area3D.new();
 			newTile.add_child(newMegaBuilding);
 			var newMegaMesh : MeshInstance3D = MeshInstance3D.new();
 			newMegaBuilding.add_child(newMegaMesh);
@@ -209,20 +237,23 @@ func Generate() -> Node3D:
 			var megaCol : CollisionShape3D = CollisionShape3D.new();
 			newMegaBuilding.add_child(megaCol);
 			newCol.shape = BoxShape3D.new();
-			var mScale : float = randf_range(35.0, 50.0); # Certain mega buildings still small
-			newCol.shape.size = Vector3(mScale,mScale,mScale);
+			var mScale : float = randf_range(15.0, 35.0); # Certain mega buildings still small
+			#newCol.shape.size = Vector3(mScale,mScale,mScale);
 			newMegaBuilding.scale = Vector3(mScale, mScale, mScale);
-			newMegaBuilding.global_transform.origin.x = randf_range(0.0, GlobalSettings.chunkXBounds*WIDTH);
-			newMegaBuilding.global_transform.origin.z = randf_range(0.0, GlobalSettings.chunkZBounds*HEIGHT);
+			newMegaBuilding.position.x = randf_range(0.0, GlobalSettings.chunkXBounds*WIDTH);
+			newMegaBuilding.position.z = randf_range(0.0, GlobalSettings.chunkZBounds*HEIGHT);
 			newMegaMesh.set_surface_override_material(0, buildMat);
+			newCol.position.y += 250.0;
+			# Check for local chunks and cull
+			for j in newMegaBuilding.get_overlapping_bodies():
+				print(j);
+				j.queue_free();
 			# Light
-#			var newLight : OmniLight3D = OmniLight3D.new();
-#			add_child(newLight);
-#			newLight.omni_range = GlobalSettings.chunkXBounds*4;
-#			newLight.light_energy = 250.0;
-#			newLight.position = newMegaBuilding.global_transform.origin;
-#			newLight.light_color = Color.BLANCHED_ALMOND;
-			# Cull colliding assets
+			var newLight : OmniLight3D = OmniLight3D.new();
+			newMegaBuilding.add_child(newLight);
+			newLight.omni_range = GlobalSettings.chunkXBounds*WIDTH;
+			newLight.light_energy = 3000.0;
+			newLight.light_color = Color.BLANCHED_ALMOND;
 	return newTile;
 
 func _physics_process(delta) -> void: # Vegetation generation
@@ -231,7 +262,7 @@ func _physics_process(delta) -> void: # Vegetation generation
 		if(vRays[i].is_colliding() && vRays[i].get_collider().is_in_group("Ground")):
 			var newTreeMesh : MeshInstance3D = MeshInstance3D.new();
 			tiles[i].add_child(newTreeMesh);
-			newTreeMesh.mesh = treeMesh;
+			newTreeMesh.mesh = GlobalSettings.treeMesh;
 			newTreeMesh.position = vRays[i].get_collision_point();
 			newTreeMesh.rotation.y = randf_range(0.0, 360.0);
 			#newTreeMesh.cast_shadow = 0;

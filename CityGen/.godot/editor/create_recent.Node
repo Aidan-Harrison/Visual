@@ -1,5 +1,6 @@
 CollisionShape3D
 StaticBody3D
+OccluderInstance3D
 Timer
 MeshInstance3D
 Camera3D

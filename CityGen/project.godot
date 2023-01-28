@@ -88,6 +88,7 @@ WalkMode={
 
 [physics]
 
+common/physics_ticks_per_second=30
 common/enable_pause_aware_picking=true
 
 [rendering]
@@ -102,9 +103,6 @@ environment/ssao/quality=0
 environment/ssil/quality=0
 environment/glow/upscale_mode=0
 environment/subsurface_scattering/subsurface_scattering_quality=0
-environment/volumetric_fog/volume_size=32
-environment/volumetric_fog/volume_depth=32
-environment/volumetric_fog/use_filter=0
 occlusion_culling/use_occlusion_culling=true
 shadows/directional_shadow/size=2048
 shadows/directional_shadow/soft_shadow_filter_quality=0

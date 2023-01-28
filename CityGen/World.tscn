@@ -1,20 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://chrgaikl7blv5"]
+[gd_scene load_steps=7 format=3 uid="uid://chrgaikl7blv5"]
 
 [ext_resource type="Script" path="res://World.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://cmrfoph1l01dd" path="res://Extra/SkyTest2.jpg" id="2_22156"]
 [ext_resource type="PackedScene" uid="uid://iowl5uua3ygp" path="res://Player.tscn" id="3_pa7wg"]
 [ext_resource type="PackedScene" uid="uid://bafh2vq06e86n" path="res://Sky.tscn" id="4_nx68f"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cabrl"]
-sky_top_color = Color(0.0431373, 0.0745098, 0.12549, 1)
-sky_horizon_color = Color(0.156863, 0.160784, 0.180392, 1)
-sky_energy_multiplier = 2.0
-sky_cover = ExtResource("2_22156")
-sky_cover_modulate = Color(0.945098, 0.92549, 0.945098, 1)
-ground_energy_multiplier = 2.0
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_78yvl"]
+rayleigh_color = Color(0.0784314, 0.360784, 0.729412, 1)
+turbidity = 25.0
+ground_color = Color(0.160784, 0.352941, 0.47451, 1)
 
 [sub_resource type="Sky" id="Sky_0fwqf"]
-sky_material = SubResource("ProceduralSkyMaterial_cabrl")
+sky_material = SubResource("PhysicalSkyMaterial_78yvl")
 radiance_size = 2
 
 [sub_resource type="Environment" id="Environment_dhwoh"]
@@ -23,34 +19,36 @@ background_color = Color(0.866667, 0.870588, 0.823529, 1)
 background_energy_multiplier = 2.0
 sky = SubResource("Sky_0fwqf")
 ambient_light_source = 3
-ambient_light_color = Color(0.227451, 0.309804, 0.376471, 1)
-reflected_light_source = 1
+ambient_light_color = Color(0.341176, 0.564706, 0.670588, 1)
+reflected_light_source = 2
 tonemap_mode = 3
+tonemap_exposure = 1.1
 ssao_radius = 60.0
 sdfgi_cascades = 1
 sdfgi_max_distance = 25.6
 glow_normalized = true
 fog_enabled = true
-fog_light_color = Color(0.996078, 0.968627, 1, 1)
-fog_density = 0.0001
+fog_light_color = Color(0.803922, 0.94902, 1, 1)
+fog_density = 0.001
 fog_aerial_perspective = 1.0
-volumetric_fog_density = 0.02
-volumetric_fog_albedo = Color(0.913725, 0.964706, 1, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.005
+volumetric_fog_albedo = Color(0.713726, 0.843137, 1, 1)
 adjustment_saturation = 2.0
 
 [node name="World" type="Node3D"]
 script = ExtResource("1")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.343862, 0.726224, -0.59528, -0.0927662, 0.657108, 0.748067, 0.934427, -0.20201, 0.293323, 0, 4.18595, 0)
+transform = Transform3D(0.054513, -0.167946, -0.984288, 0.934018, -0.339955, 0.109734, -0.353043, -0.925324, 0.138333, 0, 4.18595, 0)
+light_color = Color(0.764706, 0.890196, 1, 1)
 light_energy = 2.0
 light_bake_mode = 0
 shadow_enabled = true
-directional_shadow_mode = 1
 directional_shadow_blend_splits = true
-directional_shadow_max_distance = 1600.0
+directional_shadow_max_distance = 1200.0
 
-[node name="Environment" type="WorldEnvironment" parent="."]
+[node name="s3" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dhwoh")
 
 [node name="Player" parent="." instance=ExtResource("3_pa7wg")]
@@ -60,9 +58,9 @@ transform = Transform3D(-0.670673, -2.47921e-17, -0.741754, 3.48787e-16, 1, -3.4
 wait_time = 0.001
 
 [node name="s2" parent="." instance=ExtResource("4_nx68f")]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 2.08165e-12, 1250, 6500)
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 2.08165e-12, 750, 6500)
 
-[node name="s3" parent="." instance=ExtResource("4_nx68f")]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -5000, 1500, 2500)
+[node name="s" parent="." instance=ExtResource("4_nx68f")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -5000, 1000, 2500)
 
 [connection signal="timeout" from="VegetationTimer" to="." method="_on_vegetation_timer_timeout"]

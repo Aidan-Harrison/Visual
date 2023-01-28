@@ -52,12 +52,18 @@ func _input(event):
 		mouse = event.relative;
 	if(Input.is_action_just_pressed("Pause")):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE);
-	if(Input.is_action_pressed("Reset")):
-		get_tree().reload_current_scene(); # Broken as of beta 13, crashes
+	#if(Input.is_action_pressed("Reset")):
+		#if(get_tree().reload_current_scene() != OK):
+			#print('FAILED TO RELOAD'); # Broken as of beta 13, crashes
 
 func _on_near_field_body_entered(body):
 	if(body.is_in_group("Chunk")):
 		body.mesh.cast_shadow = true;
+	elif(body.is_in_group("Vegetation")):
+		pass # Replace with higher LOD
+		# Assign cars to chunk
+			# Decouple from player
+		
 #		for _i in 10:
 #			var newCarMesh = flyingCars.instantiate();
 #			body.add_child(newCarMesh);
@@ -69,6 +75,6 @@ func _on_near_field_body_entered(body):
 func _on_near_field_body_exited(body):
 	if(body.is_in_group("Chunk")):
 		body.mesh.cast_shadow = false;
-		for i in body.cars:
-			i.queue_free();
-		body.cars.clear();
+#		for i in body.cars:
+#			i.queue_free();
+#		body.cars.clear();

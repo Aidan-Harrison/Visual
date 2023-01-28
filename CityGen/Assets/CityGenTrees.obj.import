@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://djd38jrl27ti8"
+path="res://.godot/imported/CityGenTrees.obj-5a98f19e332f28ea1fe0f413b304e195.mesh"
+
+[deps]
+
+files=["res://.godot/imported/CityGenTrees.obj-5a98f19e332f28ea1fe0f413b304e195.mesh"]
+
+source_file="res://Assets/CityGenTrees.obj"
+dest_files=["res://.godot/imported/CityGenTrees.obj-5a98f19e332f28ea1fe0f413b304e195.mesh", "res://.godot/imported/CityGenTrees.obj-5a98f19e332f28ea1fe0f413b304e195.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
