@@ -59,10 +59,10 @@ func _input(event):
 func _on_near_field_body_entered(body):
 	if(body.is_in_group("Chunk")):
 		body.mesh.cast_shadow = true;
-	elif(body.is_in_group("Vegetation")):
-		pass # Replace with higher LOD
+	elif(body.is_in_group("Tree")):
+		body.get_node("TreeMesh").mesh = GlobalSettings.tree_mesh_lod_1;
 		# Assign cars to chunk
-			# Decouple from player
+			# Decouple from player!
 		
 #		for _i in 10:
 #			var newCarMesh = flyingCars.instantiate();
@@ -75,6 +75,5 @@ func _on_near_field_body_entered(body):
 func _on_near_field_body_exited(body):
 	if(body.is_in_group("Chunk")):
 		body.mesh.cast_shadow = false;
-#		for i in body.cars:
-#			i.queue_free();
-#		body.cars.clear();
+	elif(body.is_in_group("Tree")):
+		body.get_node("TreeMesh").mesh = GlobalSettings.tree_mesh_lod_2;

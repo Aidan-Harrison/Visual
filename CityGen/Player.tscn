@@ -23,7 +23,7 @@ disabled = true
 current = true
 fov = 80.0
 size = 750.0
-far = 5000.0
+far = 12500.0
 script = ExtResource("2_e856b")
 
 [node name="s" type="Area3D" parent="."]

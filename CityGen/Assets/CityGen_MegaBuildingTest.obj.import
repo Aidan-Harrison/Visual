@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ccrfkd1i31rxk"
+path="res://.godot/imported/CityGen_MegaBuildingTest.obj-ca1cfc8cd9a1d4deac62ad2eab2fd0a9.mesh"
+
+[deps]
+
+files=["res://.godot/imported/CityGen_MegaBuildingTest.obj-ca1cfc8cd9a1d4deac62ad2eab2fd0a9.mesh"]
+
+source_file="res://Assets/CityGen_MegaBuildingTest.obj"
+dest_files=["res://.godot/imported/CityGen_MegaBuildingTest.obj-ca1cfc8cd9a1d4deac62ad2eab2fd0a9.mesh", "res://.godot/imported/CityGen_MegaBuildingTest.obj-ca1cfc8cd9a1d4deac62ad2eab2fd0a9.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -11,5 +11,7 @@ var chunkZBounds : int = 100;
 @onready var baseMat = preload("res://Extra/BaseMat.tres");
 
 # Vegetation
-@onready var treeMesh = preload("res://Assets/CityGenTrees.obj");
-@onready var treeMesh2 = preload("res://Assets/CityGenTrees2.obj");
+@onready var tree_mesh_lod_1 = preload("res://Assets/CityGenTrees.obj");
+@onready var tree_mesh_lod_2 = preload("res://Assets/CityGenTrees2.obj");
+
+var colors = [Color.BLANCHED_ALMOND, Color.ORANGE, Color.ANTIQUE_WHITE, Color.NAVAJO_WHITE];

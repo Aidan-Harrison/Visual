@@ -1,9 +1,10 @@
+Timer
+Button
+Camera3D
 CollisionShape3D
+MeshInstance3D
 StaticBody3D
 OccluderInstance3D
-Timer
-MeshInstance3D
-Camera3D
 RayCast3D
 GPUParticles3D
 Area3D

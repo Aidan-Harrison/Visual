@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://chrgaikl7blv5"]
+[gd_scene load_steps=8 format=3 uid="uid://chrgaikl7blv5"]
 
 [ext_resource type="Script" path="res://World.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://iowl5uua3ygp" path="res://Player.tscn" id="3_pa7wg"]
 [ext_resource type="PackedScene" uid="uid://bafh2vq06e86n" path="res://Sky.tscn" id="4_nx68f"]
+[ext_resource type="PackedScene" uid="uid://cpssy7roj5n5k" path="res://UI/UI.tscn" id="4_u7upf"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_78yvl"]
 rayleigh_color = Color(0.0784314, 0.360784, 0.729412, 1)
@@ -26,12 +27,12 @@ tonemap_exposure = 1.1
 ssao_radius = 60.0
 sdfgi_cascades = 1
 sdfgi_max_distance = 25.6
+glow_enabled = true
 glow_normalized = true
 fog_enabled = true
 fog_light_color = Color(0.803922, 0.94902, 1, 1)
 fog_density = 0.001
 fog_aerial_perspective = 1.0
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.005
 volumetric_fog_albedo = Color(0.713726, 0.843137, 1, 1)
 adjustment_saturation = 2.0
@@ -63,4 +64,11 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 2.08165e-12, 750, 6500)
 [node name="s" parent="." instance=ExtResource("4_nx68f")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -5000, 1000, 2500)
 
+[node name="UI" parent="." instance=ExtResource("4_u7upf")]
+
+[node name="PostGenTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
 [connection signal="timeout" from="VegetationTimer" to="." method="_on_vegetation_timer_timeout"]
+[connection signal="timeout" from="PostGenTimer" to="." method="_on_post_gen_timer_timeout"]

@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://byn45jfe7du25"]
+
+[ext_resource type="Texture2D" uid="uid://cqm51ri04n713" path="res://Textures/CyberpunkTexture1Seamless.jpg" id="1_8pscy"]
+[ext_resource type="Texture2D" uid="uid://cy21bkqjjsxan" path="res://Extra/OfficeBuildingTexture.jpg" id="2_cngbu"]
+
+[resource]
+albedo_texture = ExtResource("1_8pscy")
+metallic_specular = 0.2
+roughness_texture = ExtResource("2_cngbu")
+uv1_scale = Vector3(4, 4, 4)
+uv1_triplanar = true

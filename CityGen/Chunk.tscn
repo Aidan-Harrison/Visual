@@ -1,20 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://d00okutbavofi"]
+[gd_scene load_steps=6 format=3 uid="uid://d00okutbavofi"]
 
 [ext_resource type="Script" path="res://Chunk.gd" id="1"]
 [ext_resource type="Material" uid="uid://dvylplaj7k30r" path="res://Extra/BuildingMat.tres" id="2_mh328"]
 [ext_resource type="ArrayMesh" uid="uid://nvowyuhr1n2y" path="res://BuildingComponents/CityGenSmallBuilding1.obj" id="3_3plc3"]
 
-[sub_resource type="MultiMesh" id="MultiMesh_1i72m"]
+[sub_resource type="MultiMesh" id="MultiMesh_oxm4k"]
 resource_local_to_scene = true
 transform_format = 1
 instance_count = 7
 mesh = ExtResource("3_3plc3")
 buffer = PackedFloat32Array(1.68156e-44, 1.4013e-44, 5.04467e-44, 4.76441e-44, 1.68156e-44, 4.48416e-44, 1.96182e-44, 1.68156e-44, 4.76441e-44, 4.48416e-44, 1.96182e-44, 4.2039e-44, 2.24208e-44, 1.96182e-44, 4.48416e-44, 4.2039e-44, 2.24208e-44, 3.92364e-44, 2.52234e-44, 2.24208e-44, 4.2039e-44, 3.92364e-44, 2.52234e-44, 3.64338e-44, 2.8026e-44, 2.52234e-44, 3.92364e-44, 3.64338e-44, 2.8026e-44, 3.36312e-44, 3.08286e-44, 2.8026e-44, 3.64338e-44, 3.36312e-44, 3.08286e-44, 3.08286e-44, 3.36312e-44, 3.08286e-44, 3.36312e-44, 3.08286e-44, 0, 0, 0.510735, 0.840236, 1, 1, 60, 0, 0.510735, 0.840236, 1, 1, 60, 512, 0, 0, 0, 1, 0, 512, 0, 0, 0, 1, 4.2039e-45, 0, 1.4013e-45, 1.4013e-45, 2.8026e-45, 4.2039e-45, 1, 1, 4.2039e-45, 0, 1.4013e-45, 1.4013e-45, 2.8026e-45, 4.2039e-45, 0, -2.5, 3.64338e-44, 3.36312e-44, 3.08286e-44, 3.08286e-44)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0488h"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_iio0m"]
-size = Vector3(100, 1, 100)
+[sub_resource type="BoxShape3D" id="BoxShape3D_n7bdc"]
 
 [node name="Chunk" type="StaticBody3D" groups=["Chunk"]]
 script = ExtResource("1")
@@ -25,10 +22,10 @@ material_override = ExtResource("2_mh328")
 cast_shadow = 0
 gi_mode = 0
 visibility_range_end = 3000.0
-multimesh = SubResource("MultiMesh_1i72m")
+multimesh = SubResource("MultiMesh_oxm4k")
 
 [node name="CollisionShape3d" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_0488h")
+shape = SubResource("BoxShape3D_n7bdc")
 
 [node name="BuildingPlacer" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
@@ -39,11 +36,5 @@ debug_shape_thickness = 5
 [node name="PlacementTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
-
-[node name="Floor" type="StaticBody3D" parent="." groups=["Ground"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.0544, -0.43414, 48.5088)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-shape = SubResource("BoxShape3D_iio0m")
 
 [connection signal="timeout" from="PlacementTimer" to="." method="_on_placement_timer_timeout"]
