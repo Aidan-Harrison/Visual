@@ -163,7 +163,16 @@ func MegaCull() -> void:
 		for j in i.get_overlapping_bodies():
 			#print(j);
 			if(j.is_in_group("Chunk")):
+				if(i.position.distance_to(j.position) < GlobalSettings.chunkXBounds*2):
+					j.queue_free();
 				j.mesh.scale.y *= 2.5;
+			elif(j.is_in_group("Mega")):
+				print("Building: ", j)
+				j.set_surface_override_material(0, treeMat);
+				j.queue_free();
+			elif(j.is_in_group("Tree")):
+				if(i.position.distance_to(j.position) < GlobalSettings.chunkXBounds*2):
+					j.queue_free();
 
 func Generate() -> Node3D:
 	# === Tile Generation ===
@@ -255,6 +264,7 @@ func Generate() -> Node3D:
 			var newMegaBuilding : Area3D = Area3D.new();
 			newTile.add_child(newMegaBuilding);
 			megaBuildings.append(newMegaBuilding);
+			newMegaBuilding.add_to_group("Mega");
 			var newMegaMesh : MeshInstance3D = MeshInstance3D.new();
 			newMegaBuilding.add_child(newMegaMesh);
 			newMegaMesh.mesh = m_buildings[buildingToAdd-1]; #? Indexing

@@ -12,6 +12,7 @@ var height : float = 1.0;
 
 #var mesh_AABB : AABB; # Used to calculate mesh to mesh intersections and road collision
 
+var maxMeshCount : int = 4;
 var world_index : int = 0; # Current iteration of world index, e.g. 1,2,3,...
 
 func Generate(rot : float) -> void:
@@ -75,6 +76,7 @@ func _physics_process(delta) -> void:
 			placeTimer.queue_free();
 			set_physics_process(false);
 
+
 func generator() -> void:
 	var xPos : int = 0;
 	var zPos : int = 0;
@@ -88,9 +90,9 @@ func generator() -> void:
 
 func _on_placement_timer_timeout():
 	if(buildingPlacer.is_colliding() && buildingPlacer.get_collider().is_in_group("Ground")):
-		if(index < mesh.multimesh.instance_count):
+		if(index < maxMeshCount):
 			var height : float = randf_range(1.0,2.0);
 			# X Axis, Y Axis, Z Axis, Origin | Do rotation!
+			mesh.multimesh.instance_count += 1;
 			mesh.multimesh.set_instance_transform(index, Transform3D(Vector3(1.0,0.0,0.0), Vector3(0.0,height,0.0), Vector3(0.0,0.0,1.0), buildingPlacer.position-Vector3(0.0,50.0,0.0)));
 			index+=1;
-			#mesh.multimesh.instance_count -= 1; # Debug only
