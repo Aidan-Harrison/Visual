@@ -4,12 +4,14 @@
 [ext_resource type="Material" uid="uid://dvylplaj7k30r" path="res://Extra/BuildingMat.tres" id="2_mh328"]
 [ext_resource type="ArrayMesh" uid="uid://nvowyuhr1n2y" path="res://BuildingComponents/CityGenSmallBuilding1.obj" id="3_3plc3"]
 
-[sub_resource type="MultiMesh" id="MultiMesh_ab7ln"]
+[sub_resource type="MultiMesh" id="MultiMesh_a5bm2"]
 resource_local_to_scene = true
 transform_format = 1
+instance_count = 4
 mesh = ExtResource("3_3plc3")
+buffer = PackedFloat32Array(5.60519e-44, 5.88545e-44, 5.74532e-44, 5.74532e-44, 6.02558e-44, 5.88545e-44, 5.88545e-44, 6.16571e-44, 6.02558e-44, 6.02558e-44, 6.30584e-44, 6.16571e-44, 6.16571e-44, 6.44597e-44, 6.30584e-44, 6.30584e-44, 6.5861e-44, 6.44597e-44, 6.44597e-44, 4.48416e-44, 6.5861e-44, 6.5861e-44, 4.62428e-44, 4.48416e-44, 4.48416e-44, 6.16571e-44, 4.76441e-44, 4.48416e-44, 6.44597e-44, 6.16571e-44, 4.76441e-44, 5.88545e-44, 5.04467e-44, 4.76441e-44, 6.16571e-44, 5.88545e-44, 5.04467e-44, 5.60519e-44, 5.32493e-44, 5.04467e-44, 5.88545e-44, 5.60519e-44, 5.32493e-44, 5.32493e-44, 5.60519e-44, 5.32493e-44, 5.60519e-44, 5.32493e-44)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_msxxp"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_wj5jt"]
 
 [node name="Chunk" type="StaticBody3D" groups=["Chunk"]]
 script = ExtResource("1")
@@ -19,10 +21,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.0
 material_override = ExtResource("2_mh328")
 cast_shadow = 0
 visibility_range_end = 3000.0
-multimesh = SubResource("MultiMesh_ab7ln")
+multimesh = SubResource("MultiMesh_a5bm2")
 
 [node name="CollisionShape3d" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_msxxp")
+shape = SubResource("BoxShape3D_wj5jt")
 
 [node name="BuildingPlacer" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)

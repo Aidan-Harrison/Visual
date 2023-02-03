@@ -6,5 +6,5 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_ld2lb")
-shader_parameter/tile_factor = Vector2(2, 2)
+shader_parameter/tile_factor = Vector2(3, 3)
 shader_parameter/skyTexture = ExtResource("2_7pdm4")

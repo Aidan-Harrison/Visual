@@ -2,6 +2,7 @@ extends CharacterBody3D;
 
 @onready var cam = $Camera;
 @onready var flyingCars = preload("res://VFX/Cars.tscn");
+@onready var cars = $CarStream;
 
 var mouse = Vector2.ZERO;
 var direction = Vector3.ZERO;
@@ -63,14 +64,7 @@ func _on_near_field_body_entered(body):
 		body.get_node("TreeMesh").mesh = GlobalSettings.tree_mesh_lod_1;
 		# Assign cars to chunk
 			# Decouple from player!
-		
-#		for _i in 10:
-#			var newCarMesh = flyingCars.instantiate();
-#			body.add_child(newCarMesh);
-#			body.cars.append(newCarMesh);
-#			# Fix position
-#			newCarMesh.position = Vector3(randf_range(body.position.x, body.position.x+GlobalSettings.chunkXBounds/2), randf_range(50.0,100.0), randf_range(body.position.z, body.position.z+GlobalSettings.chunkZBounds/2));
-#			#newCarMesh.rotation = body.rotation;
+	cars.position = body.position;
 
 func _on_near_field_body_exited(body):
 	if(body.is_in_group("Chunk")):

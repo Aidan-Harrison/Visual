@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode blend_mix;
 
 uniform sampler2D skyTexture;
 uniform vec2 tile_factor = vec2(7.0, 7.0);

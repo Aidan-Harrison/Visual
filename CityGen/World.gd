@@ -8,6 +8,7 @@ extends Node3D;
 # Mega buildings
 @onready var mB1 = preload("res://Assets/CityGen_MegaBuildingTest.obj");
 @onready var mB2 = preload("res://Assets/CityGen_MegaBuildingTest.obj");
+@onready var mB3 = preload("res://BuildingComponents/CityGenMegaBuild2.obj");
 
 # Highways
 @onready var highwayStraight = preload("res://Roads/CityGenHighway.obj");
@@ -61,7 +62,7 @@ var testIndex : int = 1;
 # Interface
 	# === ROADS, LIGHTS, MEGA BUILDINGS ===
 enum flag_indexes{ROADS, LIGHTS, MEGABUILD, HIGHWAY, VEGETATION, RIVER, CARS}; # Remove lights generation
-@export var generation_flags = [false,false,true,false,true,false,false]; # Make UI only, not export
+@export var generation_flags = [false,false,true,true,true,false,false]; # Make UI only, not export
 @export var numberOfTiles : int = 72; # Max: 256 with mesh visible diabled on generation!
 @export var uniform : bool = true;
 @export var highwaySectionLength : int = 3;
@@ -85,10 +86,11 @@ func _ready() -> void:
 	# Change, global script?
 	m_buildings.append(mB1);
 	m_buildings.append(mB2);
+	m_buildings.append(mB3);
 	get_viewport().debug_draw = 0;
 	call_deferred("Tile");
 	if(generation_flags[flag_indexes.HIGHWAY]):
-		var height : float = 50.0;
+		var height : float = 0.0;
 		for _i in numOfHighways:
 			Highway(height);
 			height -= 100.0;
@@ -117,7 +119,7 @@ func Highway(height : float) -> void: # === Highway Generation ===
 	var validDirections = [true,true,true,true];
 	var counter : int = 0;
 	var direction : int = 1;
-	for i in range(WIDTH*HEIGHT*numberOfTiles): #? -> *2
+	for i in range(numberOfTiles): #? -> *2
 		if(!validDirections[0] && !validDirections[1] && !validDirections[2] && !validDirections[3]): # Cannot go anywhere
 			break;
 		var newHighwaySection : StaticBody3D = StaticBody3D.new();
@@ -125,7 +127,7 @@ func Highway(height : float) -> void: # === Highway Generation ===
 		var highwayMesh : MeshInstance3D = MeshInstance3D.new();
 		newHighwaySection.add_child(highwayMesh);
 		highwayMesh.mesh = highwayStraight;
-		highwayMesh.set_surface_override_material(0, baseMat);
+		highwayMesh.set_surface_override_material(0, GlobalSettings.asphalt);
 		var highwayCol : CollisionShape3D = CollisionShape3D.new();
 		newHighwaySection.add_child(highwayCol);
 		highwayMesh.scale *= GlobalSettings.chunkXBounds;
@@ -260,14 +262,14 @@ func Generate() -> Node3D:
 			var buildingToAdd : float = randf_range(0.0, 1.0);
 			if(buildingToAdd < 0.95):
 				continue;
-			buildingToAdd = randi_range(0, m_buildings.size());
+			buildingToAdd = randi_range(0, m_buildings.size()-1);
 			var newMegaBuilding : Area3D = Area3D.new();
 			newTile.add_child(newMegaBuilding);
 			megaBuildings.append(newMegaBuilding);
 			newMegaBuilding.add_to_group("Mega");
 			var newMegaMesh : MeshInstance3D = MeshInstance3D.new();
 			newMegaBuilding.add_child(newMegaMesh);
-			newMegaMesh.mesh = m_buildings[buildingToAdd-1]; #? Indexing
+			newMegaMesh.mesh = m_buildings[buildingToAdd];
 			# Mega building collision/bounding ===
 			var megaCol : CollisionShape3D = CollisionShape3D.new();
 			newMegaBuilding.add_child(megaCol); # Reimplement to add child to building

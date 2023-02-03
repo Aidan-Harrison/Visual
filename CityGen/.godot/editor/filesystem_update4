@@ -4,9 +4,13 @@ res://Extra/TreeMat.tres
 res://Extra/MegaBuildingMat.tres
 res://Shaders/Clouds.tres
 res://World.tscn
+res://World.gd
 res://Chunk.tscn
 res://Sky.tscn
 res://Player.tscn
 res://VFX/Cars.tscn
+res://Player.gd
+res://Shaders/Asphalt.tres
+res://Global_Scripts/GlobalSettings.gd
 res://Chunk.gd
-res://World.gd
+res://Shaders/Clouds.gdshader

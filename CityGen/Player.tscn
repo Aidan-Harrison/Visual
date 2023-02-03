@@ -33,15 +33,6 @@ shape = SubResource("SphereShape3D_g08dc")
 
 [node name="CarStream" parent="." instance=ExtResource("3_e5ve4")]
 transform = Transform3D(3, -3.64957e-31, 0, -3.64957e-31, 3, 0, 0, 0, 3, 1.39515e-14, -12, -52)
-visible = false
-
-[node name="CarStream2" parent="." instance=ExtResource("3_e5ve4")]
-transform = Transform3D(-1.31134e-07, 1.04636e-15, 3, 1.04636e-15, 3, -1.04636e-15, -3, 1.04636e-15, -1.31134e-07, 16, 10, -40)
-visible = false
-
-[node name="CarStream3" parent="." instance=ExtResource("3_e5ve4")]
-transform = Transform3D(-2.59808, 2.85871e-15, -1.5, 3.52208e-15, 3, -3.82994e-16, 1.5, -2.09272e-15, -2.59808, -50, 3, -25)
-visible = false
 
 [connection signal="body_entered" from="s" to="." method="_on_near_field_body_entered"]
 [connection signal="body_exited" from="s" to="." method="_on_near_field_body_exited"]

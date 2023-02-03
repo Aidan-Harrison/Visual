@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://csagjum5r365"]
+
+[ext_resource type="Texture2D" uid="uid://cn8qkrc6wtip4" path="res://Textures/Asphalt.jpg" id="1_4vtt6"]
+
+[resource]
+albedo_texture = ExtResource("1_4vtt6")
+uv1_scale = Vector3(7, 7, 7)
+uv1_triplanar = true

@@ -9,6 +9,7 @@ var chunkZBounds : int = 100;
 
 # Materials/Shaders
 @onready var baseMat = preload("res://Extra/BaseMat.tres");
+@onready var asphalt = preload("res://Shaders/Asphalt.tres");
 
 # Vegetation
 @onready var tree_mesh_lod_1 = preload("res://Assets/CityGenTrees.obj");
