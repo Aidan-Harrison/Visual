@@ -1,4 +1,181 @@
-[gd_scene format=3 uid="uid://bugkrx7hhq07f"]
+[gd_scene load_steps=53 format=3 uid="uid://bugkrx7hhq07f"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_1bimw"]
+[ext_resource type="Theme" uid="uid://dhegp1qwmr5ig" path="res://MainTheme.tres" id="2_0bima"]
+[ext_resource type="Texture2D" uid="uid://c237rq0kw10d6" path="res://Assets/Textures/AgonyOrb.png" id="3_j67o6"]
+[ext_resource type="Texture2D" uid="uid://cs4diy46ulqt7" path="res://Assets/Textures/TurmoilCrystal.png" id="4_hymp8"]
+[ext_resource type="Script" path="res://Market.gd" id="4_iciwh"]
+[ext_resource type="Texture2D" uid="uid://4g7f87tsw3g1" path="res://Assets/Textures/GoldStack.png" id="4_lmwr0"]
+[ext_resource type="Texture2D" uid="uid://ojv41bhccfjk" path="res://Assets/Textures/BismuthShard.png" id="5_28sfw"]
+[ext_resource type="Texture2D" uid="uid://cd3a8tlef82am" path="res://Assets/Textures/Prism.png" id="7_a3yfb"]
+[ext_resource type="Texture2D" uid="uid://dfrh1jfxy2jg8" path="res://Assets/Textures/Havenbane_button_texture.png" id="7_wuo2v"]
+[ext_resource type="Texture2D" uid="uid://dwh1vlfxpngon" path="res://Assets/Textures/RefinementJewel.png" id="8_lfy2y"]
+[ext_resource type="PackedScene" uid="uid://cayxjpusx8r37" path="res://UI/MarketItem.tscn" id="8_q1nu2"]
+[ext_resource type="Texture2D" uid="uid://bgnop4ae716lk" path="res://Assets/Textures/ExiledOrb.png" id="9_g1p2i"]
+[ext_resource type="Script" path="res://Inventory.gd" id="12_yteno"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bd8xe"]
+font_size = 38
+
+[sub_resource type="LabelSettings" id="LabelSettings_ba40f"]
+font_size = 26
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvau5"]
+bg_color = Color(0.686275, 0.12549, 0.145098, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_430v8"]
+bg_color = Color(0.176471, 0.6, 0.270588, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5h14"]
+bg_color = Color(0.686275, 0.12549, 0.145098, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f0kqn"]
+bg_color = Color(0.176471, 0.6, 0.270588, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jo835"]
+bg_color = Color(0.686275, 0.12549, 0.145098, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4o2ry"]
+bg_color = Color(0.176471, 0.6, 0.270588, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k48x3"]
+bg_color = Color(0.686275, 0.12549, 0.145098, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_brllu"]
+bg_color = Color(0.176471, 0.6, 0.270588, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgn41"]
+bg_color = Color(0.196078, 0.117647, 0.192157, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66tfo"]
+bg_color = Color(0.792157, 0.47451, 0.776471, 1)
+corner_detail = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_ti21f"]
+font_size = 32
+outline_size = 7
+outline_color = Color(0.792157, 0.47451, 0.776471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32yma"]
+bg_color = Color(0.470588, 0.439216, 0.305882, 1)
+corner_detail = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_sug0c"]
+font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yusf1"]
+font_size = 56
+outline_size = 13
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bgguv"]
+font_size = 32
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a1l62"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_detail = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_fwosd"]
+font_size = 28
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uykj8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_detail = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_80763"]
+font_size = 27
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ky65e"]
+font_size = 26
+font_color = Color(0.607843, 0.796078, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hcn3s"]
+font_size = 26
+font_color = Color(0.607843, 0.796078, 1, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u2ywe"]
+font_size = 26
+font_color = Color(0.607843, 0.796078, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_34ysp"]
+font_size = 18
+font_color = Color(0.745098, 0.65098, 0.52549, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qk3as"]
+font_size = 31
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2qtk0"]
+font_size = 28
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7a35k"]
+bg_color = Color(0.317647, 0.701961, 0.207843, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyi6f"]
+bg_color = Color(0.313726, 1, 0.156863, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrp51"]
+bg_color = Color(0.156863, 0.345098, 0.101961, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aawnf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_detail = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_b66d0"]
+font_size = 32
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ckaog"]
+bg_color = Color(0.654902, 0.235294, 0.203922, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ph4ry"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_irqpv"]
+bg_color = Color(1, 0.0745098, 0, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4y7l"]
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ob04"]
+bg_color = Color(0.6, 0, 0.0352941, 1)
+corner_detail = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_leke7"]
+font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6sx2r"]
+bg_color = Color(0.705882, 0.0666667, 0.0705882, 1)
+corner_detail = 1
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -7,24 +184,1735 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1bimw")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_0bima")
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="CraftingItems" type="Label" parent="Background"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.766
+anchor_left = 0.276
+anchor_top = 0.045
+anchor_right = 0.276
+anchor_bottom = 0.045
+offset_left = -129.92
+offset_top = -35.6
+offset_right = 131.08
+offset_bottom = 20.4
+grow_horizontal = 2
+text = "Crafting Items"
+label_settings = SubResource("LabelSettings_bd8xe")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AgonyOrb" type="Button" parent="Background"]
+layout_mode = 2
+anchor_left = 0.085
+anchor_top = 0.11
+anchor_right = 0.19
+anchor_bottom = 0.271
+offset_left = 0.799998
+offset_top = 0.199993
+offset_right = -0.800024
+offset_bottom = 0.31997
+icon = ExtResource("3_j67o6")
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_group_ = true
+
+[node name="AgonyOrbLabel" type="Label" parent="Background/AgonyOrb"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.224
+anchor_right = 1.0
+offset_top = -0.0239988
+grow_horizontal = 2
+text = "AGONY ORB"
+label_settings = SubResource("LabelSettings_ba40f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Amount" type="Label" parent="Background/AgonyOrb"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.87
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.178
+offset_left = -1.28746e-05
+offset_bottom = 0.0279839
+grow_horizontal = 0
+grow_vertical = 0
+text = "x5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BUY" type="Button" parent="Background/AgonyOrb"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 0.47
+anchor_bottom = 1.178
+offset_bottom = 0.0279839
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_rvau5")
+text = "BUY"
+
+[node name="SELL" type="Button" parent="Background/AgonyOrb"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47
+anchor_top = 1.0
+anchor_right = 0.87
+anchor_bottom = 1.178
+offset_right = -1.28746e-05
+offset_bottom = 0.0279839
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_430v8")
+text = "SELL"
+
+[node name="COST" type="Label" parent="Background/AgonyOrb"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.851
+anchor_right = 1.005
+anchor_bottom = 1.0
+offset_left = -1.52588e-05
+offset_top = -0.0740065
+offset_right = 1.63651e-05
+offset_bottom = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 0
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background/AgonyOrb/COST"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.026
+anchor_right = 0.134
+anchor_bottom = 1.0
+offset_left = 0.226
+offset_right = 0.0659993
+texture = ExtResource("4_lmwr0")
+expand_mode = 1
+
+[node name="TurmoilCrystal" type="Button" parent="Background"]
+layout_mode = 2
+anchor_left = 0.214
+anchor_top = 0.11
+anchor_right = 0.318
+anchor_bottom = 0.271
+offset_left = 0.119968
+offset_top = 0.199993
+offset_right = 0.439964
+offset_bottom = 0.31997
+icon = ExtResource("4_hymp8")
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_group_ = true
+
+[node name="TurmoilCrystal" type="Label" parent="Background/TurmoilCrystal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.224
+anchor_right = 1.0
+offset_top = -0.0239988
+grow_horizontal = 2
+text = "TURMOIL CRYSTAL"
+label_settings = SubResource("LabelSettings_ba40f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Amount" type="Label" parent="Background/TurmoilCrystal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.87
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.178
+offset_left = -1.28746e-05
+offset_bottom = 0.0279839
+grow_horizontal = 0
+grow_vertical = 0
+text = "x5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Turm_BUY" type="Button" parent="Background/TurmoilCrystal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 0.47
+anchor_bottom = 1.178
+offset_bottom = 0.0279839
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_f5h14")
+text = "BUY"
+
+[node name="Turm_SELL" type="Button" parent="Background/TurmoilCrystal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47
+anchor_top = 1.0
+anchor_right = 0.87
+anchor_bottom = 1.178
+offset_right = -1.28746e-05
+offset_bottom = 0.0279839
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_f0kqn")
+text = "SELL"
+
+[node name="COST" type="Label" parent="Background/TurmoilCrystal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.851
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.500015
+offset_top = -0.074037
+offset_right = 0.500015
+grow_horizontal = 2
+grow_vertical = 0
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background/TurmoilCrystal/COST"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.026
+anchor_right = 0.134
+anchor_bottom = 1.0
+offset_left = 0.226
+offset_right = 0.0659993
+texture = ExtResource("4_lmwr0")
+expand_mode = 1
+
+[node name="BismuthShard" type="Button" parent="Background"]
+layout_mode = 2
+anchor_left = 0.348
+anchor_top = 0.111
+anchor_right = 0.452
+anchor_bottom = 0.271
+offset_left = -0.160038
+offset_top = 0.11999
+offset_right = 0.159958
+offset_bottom = 1.31997
+icon = ExtResource("5_28sfw")
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_group_ = true
+
+[node name="BismuthShard" type="Label" parent="Background/BismuthShard"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.224
+anchor_right = 1.0
+offset_top = -0.0239988
+grow_horizontal = 2
+text = "BISMUTH SHARD"
+label_settings = SubResource("LabelSettings_ba40f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Amount" type="Label" parent="Background/BismuthShard"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.87
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.178
+offset_left = -1.28746e-05
+offset_bottom = 0.0279839
+grow_horizontal = 0
+grow_vertical = 0
+text = "x5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bis_BUY" type="Button" parent="Background/BismuthShard"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 0.47
+anchor_bottom = 1.178
+offset_bottom = 0.0279839
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_jo835")
+text = "BUY"
+
+[node name="Bis_SELL" type="Button" parent="Background/BismuthShard"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47
+anchor_top = 1.0
+anchor_right = 0.87
+anchor_bottom = 1.178
+offset_right = -1.28746e-05
+offset_bottom = 0.0279839
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_4o2ry")
+text = "SELL"
+
+[node name="COST" type="Label" parent="Background/BismuthShard"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.851
+anchor_right = 1.005
+anchor_bottom = 1.0
+offset_top = -0.0739759
+offset_bottom = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 0
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background/BismuthShard/COST"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.026
+anchor_right = 0.134
+anchor_bottom = 1.0
+offset_left = 0.226
+offset_right = 0.0659993
+texture = ExtResource("4_lmwr0")
+expand_mode = 1
+
+[node name="Prism" type="Button" parent="Background"]
+layout_mode = 2
+anchor_left = 0.086
+anchor_top = 0.344
+anchor_right = 0.191
+anchor_bottom = 0.506
+offset_left = 0.879994
+offset_top = 0.479987
+offset_right = -0.720028
+offset_bottom = -0.480045
+icon = ExtResource("7_a3yfb")
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_group_ = true
+
+[node name="Prism" type="Label" parent="Background/Prism"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.224
+anchor_right = 1.0
+offset_top = -0.0239988
+grow_horizontal = 2
+text = "PRISM"
+label_settings = SubResource("LabelSettings_ba40f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Amount" type="Label" parent="Background/Prism"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.87
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.178
+offset_left = -1.28746e-05
+offset_bottom = 0.0279839
+grow_horizontal = 0
+grow_vertical = 0
+text = "x5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pri_BUY" type="Button" parent="Background/Prism"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 0.47
+anchor_bottom = 1.178
+offset_bottom = 0.0279839
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_k48x3")
+text = "BUY"
+
+[node name="Pri_SELL" type="Button" parent="Background/Prism"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47
+anchor_top = 1.0
+anchor_right = 0.87
+anchor_bottom = 1.178
+offset_right = -1.28746e-05
+offset_bottom = 0.0279839
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_brllu")
+text = "SELL"
+
+[node name="COST" type="Label" parent="Background/Prism"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.851
+anchor_right = 1.005
+anchor_bottom = 1.0
+offset_top = -0.0739759
+offset_bottom = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 0
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background/Prism/COST"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.026
+anchor_right = 0.134
+anchor_bottom = 1.0
+offset_left = 0.226
+offset_right = 0.0659993
+texture = ExtResource("4_lmwr0")
+expand_mode = 1
+
+[node name="RefinementJewel" type="Button" parent="Background"]
+layout_mode = 2
+anchor_left = 0.214
+anchor_top = 0.344
+anchor_right = 0.318
+anchor_bottom = 0.506
+offset_left = -0.880032
+offset_top = 0.479987
+offset_right = -0.560036
+offset_bottom = -0.480045
+icon = ExtResource("8_lfy2y")
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_group_ = true
+
+[node name="RefinementJewel" type="Label" parent="Background/RefinementJewel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.224
+anchor_right = 1.0
+offset_top = -0.0239988
+grow_horizontal = 2
+text = "REFINEMENT JEWEL"
+label_settings = SubResource("LabelSettings_ba40f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Amount" type="Label" parent="Background/RefinementJewel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.87
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.178
+offset_left = -1.28746e-05
+offset_bottom = 0.0279839
+grow_horizontal = 0
+grow_vertical = 0
+text = "x5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ref_BUY" type="Button" parent="Background/RefinementJewel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 0.47
+anchor_bottom = 1.178
+offset_bottom = 0.0279839
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_k48x3")
+text = "BUY"
+
+[node name="Ref_SELL" type="Button" parent="Background/RefinementJewel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47
+anchor_top = 1.0
+anchor_right = 0.87
+anchor_bottom = 1.178
+offset_right = -1.28746e-05
+offset_bottom = 0.0279839
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_brllu")
+text = "SELL"
+
+[node name="COST" type="Label" parent="Background/RefinementJewel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.851
+anchor_right = 1.005
+anchor_bottom = 1.0
+offset_top = -0.0739759
+offset_bottom = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 0
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background/RefinementJewel/COST"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.026
+anchor_right = 0.134
+anchor_bottom = 1.0
+offset_left = 0.226
+offset_right = 0.0659993
+texture = ExtResource("4_lmwr0")
+expand_mode = 1
+
+[node name="ExiledOrb" type="Button" parent="Background"]
+layout_mode = 2
+anchor_left = 0.348
+anchor_top = 0.344
+anchor_right = 0.453
+anchor_bottom = 0.506
+offset_left = 0.839962
+offset_top = 0.479987
+offset_right = -0.760017
+offset_bottom = -0.480106
+icon = ExtResource("9_g1p2i")
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_group_ = true
+
+[node name="ExiledOrb" type="Label" parent="Background/ExiledOrb"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.224
+anchor_right = 1.0
+offset_top = -0.0239988
+grow_horizontal = 2
+text = "EXILED ORB"
+label_settings = SubResource("LabelSettings_ba40f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Amount" type="Label" parent="Background/ExiledOrb"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.87
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.178
+offset_left = -1.28746e-05
+offset_bottom = 0.0279839
+grow_horizontal = 0
+grow_vertical = 0
+text = "x5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exi_BUY" type="Button" parent="Background/ExiledOrb"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 0.47
+anchor_bottom = 1.178
+offset_bottom = 0.0279839
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_k48x3")
+text = "BUY"
+
+[node name="Exi_SELL" type="Button" parent="Background/ExiledOrb"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47
+anchor_top = 1.0
+anchor_right = 0.87
+anchor_bottom = 1.178
+offset_right = -1.28746e-05
+offset_bottom = 0.0279839
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_brllu")
+text = "SELL"
+
+[node name="COST" type="Label" parent="Background/ExiledOrb"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.851
+anchor_right = 1.005
+anchor_bottom = 1.0
+offset_top = -0.0739759
+offset_bottom = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 0
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background/ExiledOrb/COST"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.026
+anchor_right = 0.134
+anchor_bottom = 1.0
+offset_left = 0.226
+offset_right = 0.0659993
+texture = ExtResource("4_lmwr0")
+expand_mode = 1
+
+[node name="Currency" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017
+anchor_top = 0.711
+anchor_right = 0.148
+anchor_bottom = 0.785
+offset_left = 0.415999
+offset_top = 0.271984
+offset_right = 0.503998
+offset_bottom = 1.31998
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background/Currency"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.016
+anchor_top = -0.101
+anchor_right = 0.384
+anchor_bottom = 0.899
+offset_left = 0.918273
+offset_top = 0.0257263
+offset_right = -0.0521659
+offset_bottom = 0.0257211
+texture = ExtResource("4_lmwr0")
+expand_mode = 1
+
+[node name="LastProfit" type="Label" parent="Background/Currency"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.287
+anchor_top = 0.369
+anchor_right = 1.446
+anchor_bottom = 0.69
+offset_left = 0.124487
+offset_top = -0.029216
+offset_right = 0.118805
+offset_bottom = -0.0199332
+grow_horizontal = 0
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LP" type="Label" parent="Background/Currency/LastProfit"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.342
+anchor_top = -0.044
+anchor_right = -0.067
+anchor_bottom = 0.956
+offset_left = 0.68
+offset_top = 1.144
+offset_right = 0.68
+offset_bottom = 1.144
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.388235, 1, 0.376471, 1)
+text = "Last Profit:
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShortTermProft" type="Label" parent="Background/Currency"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.287
+anchor_top = 0.64
+anchor_right = 1.446
+anchor_bottom = 0.961
+offset_left = 0.124487
+offset_top = 0.0284656
+offset_right = 0.118805
+offset_bottom = 0.0377531
+grow_horizontal = 0
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SP" type="Label" parent="Background/Currency/ShortTermProft"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -3.55
+anchor_top = -0.044
+anchor_right = -0.125
+anchor_bottom = 0.962
+offset_top = 0.144
+offset_bottom = -0.0120019
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.388235, 1, 0.376471, 1)
+text = "Short-term Profit:
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EXP" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.71
+anchor_right = 0.353
+anchor_bottom = 0.785
+offset_left = -0.240034
+offset_top = 0.199959
+offset_right = -0.151997
+offset_bottom = 0.167989
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EXPBar" type="ProgressBar" parent="Background/EXP"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.655
+anchor_right = 0.992
+anchor_bottom = 0.988
+offset_left = -1.99997
+offset_top = -0.0340635
+offset_right = 0.0128836
+offset_bottom = 0.00356599
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_xgn41")
+theme_override_styles/fill = SubResource("StyleBoxFlat_66tfo")
+show_percentage = false
+
+[node name="LEVEL" type="Label" parent="Background/EXP"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.008
+anchor_top = 0.049
+anchor_right = 0.151
+anchor_bottom = 0.642
+offset_left = 0.0128946
+offset_top = 0.0326255
+offset_right = 0.00722025
+offset_bottom = 0.018553
+text = "0"
+label_settings = SubResource("LabelSettings_ti21f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GENERATE" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.016
+anchor_top = 0.917
+anchor_right = 0.54
+anchor_bottom = 0.965
+offset_left = -0.432016
+offset_top = -0.216036
+offset_right = -0.0800247
+offset_bottom = -0.320022
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_32yma")
+text = "GENERATE"
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="GENERATE"]
+modulate = Color(1, 0.8, 0.490196, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_wuo2v")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="GenerationCost" type="Label" parent="GENERATE"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.869
+anchor_top = 0.039
+anchor_right = 1.0
+anchor_bottom = 0.986
+offset_left = 0.410568
+offset_top = -0.0177049
+offset_right = 0.567993
+offset_bottom = -0.0117218
+grow_horizontal = 0
+grow_vertical = 2
+text = "0000"
+label_settings = SubResource("LabelSettings_sug0c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GENERATION" type="Label" parent="GENERATE"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.766
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -248.432
-offset_top = -304.0
-offset_right = 248.568
-offset_bottom = 303.0
+offset_left = -40.5
+offset_top = -13.0
+offset_right = 40.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GENERATE"
+label_settings = SubResource("LabelSettings_yusf1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SAVE" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.016
+anchor_top = 0.866
+anchor_right = 0.278
+anchor_bottom = 0.914
+offset_left = 0.568005
+offset_top = -0.168036
+offset_right = -0.256031
+offset_bottom = -0.272022
+grow_horizontal = 2
+grow_vertical = 0
+text = "SAVE"
+
+[node name="MARKET" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017
+anchor_top = 0.79
+anchor_right = 0.279
+anchor_bottom = 0.863
+offset_left = 0.415999
+offset_top = 0.0799861
+offset_right = -0.408016
+offset_bottom = -0.224023
+grow_horizontal = 2
+grow_vertical = 0
+text = "MARKET"
+
+[node name="INVENTORY" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.28
+anchor_top = 0.79
+anchor_right = 0.541
+anchor_bottom = 0.863
+offset_left = -0.600002
+offset_top = -0.200023
+offset_right = 0.496048
+offset_bottom = -0.504088
+grow_horizontal = 2
+grow_vertical = 0
+text = "INVENTORY"
+
+[node name="MENU" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.001
+anchor_top = 0.001
+anchor_right = 0.04
+anchor_bottom = 0.053
+offset_left = -0.919973
+offset_top = -0.0799891
+offset_right = 0.20004
+offset_bottom = -0.240007
+grow_horizontal = 2
+grow_vertical = 0
+text = "///"
+
+[node name="LOAD" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.279
+anchor_top = 0.866
+anchor_right = 0.54
+anchor_bottom = 0.914
+offset_left = -0.408016
+offset_top = -0.168036
+offset_right = -0.0800247
+offset_bottom = -0.272022
+grow_horizontal = 2
+grow_vertical = 0
+text = "LOAD"
+
+[node name="ItemBack" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55
+anchor_top = 0.031
+anchor_right = 0.982
+anchor_bottom = 0.96
+offset_left = -2.28882e-05
+offset_top = -0.479999
+offset_right = -0.439987
+offset_bottom = 0.199959
+theme = ExtResource("2_0bima")
+color = Color(0.737255, 0.737255, 0.737255, 1)
+
+[node name="Texture" type="TextureRect" parent="ItemBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.007
+anchor_top = 0.006
+anchor_right = 0.992
+anchor_bottom = 0.993
+offset_left = 0.197
+offset_top = -0.0239993
+offset_right = -0.368036
+offset_bottom = 0.0280906
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_wuo2v")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="ItemName" type="Label" parent="ItemBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.036
+anchor_right = 0.965
+anchor_bottom = 0.048
+offset_left = 0.156004
+offset_right = 0.0149723
+offset_bottom = -0.192
+grow_horizontal = 2
+text = "DEFAULT ITEM NAME"
+label_settings = SubResource("LabelSettings_bgguv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemLevel" type="Label" parent="ItemBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.465
+anchor_top = 0.061
+anchor_right = 0.465
+anchor_bottom = 0.061
+offset_left = -31.485
+offset_top = -20.244
+offset_right = 44.515
+offset_bottom = 14.756
+grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_a1l62")
+text = "Level:"
+label_settings = SubResource("LabelSettings_fwosd")
+vertical_alignment = 1
+
+[node name="iLevel" type="Label" parent="ItemBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.549
+anchor_top = 0.062
+anchor_right = 0.549
+anchor_bottom = 0.062
+offset_left = -15.121
+offset_top = -20.248
+offset_right = 14.879
+offset_bottom = 19.752
+grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_uykj8")
+text = "00
+"
+label_settings = SubResource("LabelSettings_80763")
+
+[node name="ItemImageBackground" type="ColorRect" parent="ItemBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.036
+anchor_top = 0.074
+anchor_right = 0.968
+anchor_bottom = 0.527
+offset_left = 0.108027
+offset_top = 0.0819994
+offset_right = -0.0960556
+offset_bottom = 0.110994
+color = Color(0, 0, 0, 1)
+
+[node name="ItemIcon" type="TextureRect" parent="ItemBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_top = 0.074
+anchor_right = 0.967
+anchor_bottom = 0.527
+offset_left = -0.0150001
+offset_top = -0.296001
+offset_right = 0.356944
+offset_bottom = -0.10801
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_lmwr0")
+expand_mode = 1
+
+[node name="StatBack" type="ColorRect" parent="ItemBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.034
+anchor_top = 0.54
+anchor_right = 0.968
+anchor_bottom = 0.947
+offset_left = 0.101997
+offset_top = 0.219987
+offset_right = -0.0960861
+offset_bottom = 0.170984
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.439216, 0.439216, 0.439216, 1)
+
+[node name="ValueBack" type="ColorRect" parent="ItemBack/StatBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.123
+anchor_bottom = 1.0
+offset_top = 20.0
+offset_right = -0.0720016
+color = Color(0.223529, 0.223529, 0.223529, 1)
+metadata/_edit_group_ = true
+
+[node name="V1" type="Label" parent="ItemBack/StatBack/ValueBack"]
+layout_mode = 2
+offset_right = 95.0
+offset_bottom = 39.0
+text = "00"
+label_settings = SubResource("LabelSettings_ky65e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="V2" type="Label" parent="ItemBack/StatBack/ValueBack"]
+layout_mode = 2
+offset_top = 40.0
+offset_right = 95.0
+offset_bottom = 79.0
+text = "00"
+label_settings = SubResource("LabelSettings_ky65e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="V3" type="Label" parent="ItemBack/StatBack/ValueBack"]
+layout_mode = 2
+offset_top = 100.0
+offset_right = 95.0
+offset_bottom = 139.0
+text = "00"
+label_settings = SubResource("LabelSettings_ky65e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="V4" type="Label" parent="ItemBack/StatBack/ValueBack"]
+layout_mode = 2
+offset_top = 140.0
+offset_right = 95.0
+offset_bottom = 179.0
+text = "00"
+label_settings = SubResource("LabelSettings_ky65e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="V5" type="Label" parent="ItemBack/StatBack/ValueBack"]
+layout_mode = 2
+offset_top = 200.0
+offset_right = 95.0
+offset_bottom = 239.0
+text = "00"
+label_settings = SubResource("LabelSettings_ky65e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="V6" type="Label" parent="ItemBack/StatBack/ValueBack"]
+layout_mode = 2
+offset_top = 240.0
+offset_right = 95.0
+offset_bottom = 279.0
+text = "00"
+label_settings = SubResource("LabelSettings_ky65e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatBack" type="ColorRect" parent="ItemBack/StatBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.136
+anchor_right = 0.864
+anchor_bottom = 1.0
+offset_left = -0.104003
+offset_top = 20.0
+offset_right = 0.10399
+color = Color(0.223529, 0.223529, 0.223529, 1)
+metadata/_edit_group_ = true
+
+[node name="S1" type="Label" parent="ItemBack/StatBack/StatBack"]
+layout_mode = 2
+anchor_right = 0.999
+anchor_bottom = 0.1
+offset_right = -0.180315
+offset_bottom = 0.142101
+text = "TEST"
+label_settings = SubResource("LabelSettings_hcn3s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="S2" type="Label" parent="ItemBack/StatBack/StatBack"]
+layout_mode = 2
+anchor_top = 0.103
+anchor_right = 0.999
+anchor_bottom = 0.196
+offset_top = -0.0236378
+offset_right = -0.180315
+offset_bottom = -0.161484
+label_settings = SubResource("LabelSettings_hcn3s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="S3" type="Label" parent="ItemBack/StatBack/StatBack"]
+layout_mode = 2
+anchor_top = 0.257
+anchor_right = 0.999
+anchor_bottom = 0.35
+offset_top = 0.135203
+offset_right = -0.180315
+offset_bottom = -0.00265209
+label_settings = SubResource("LabelSettings_hcn3s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="S4" type="Label" parent="ItemBack/StatBack/StatBack"]
+layout_mode = 2
+anchor_top = 0.36
+anchor_right = 0.999
+anchor_bottom = 0.453
+offset_top = 0.111562
+offset_right = -0.180315
+offset_bottom = -0.0262812
+label_settings = SubResource("LabelSettings_hcn3s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="S5" type="Label" parent="ItemBack/StatBack/StatBack"]
+layout_mode = 2
+anchor_top = 0.515
+anchor_right = 0.999
+anchor_bottom = 0.607
+offset_top = -0.118192
+offset_right = -0.180315
+offset_bottom = 0.132539
+label_settings = SubResource("LabelSettings_hcn3s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="S6" type="Label" parent="ItemBack/StatBack/StatBack"]
+layout_mode = 2
+anchor_top = 0.618
+anchor_right = 0.999
+anchor_bottom = 0.71
+offset_top = -0.141821
+offset_right = -0.180315
+offset_bottom = 0.10891
+label_settings = SubResource("LabelSettings_hcn3s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TierBack" type="ColorRect" parent="ItemBack/StatBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.875
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.76566e-05
+offset_top = 20.0
+color = Color(0.223529, 0.223529, 0.223529, 1)
+metadata/_edit_group_ = true
+
+[node name="T1" type="Label" parent="ItemBack/StatBack/TierBack"]
+layout_mode = 2
+offset_right = 96.0
+offset_bottom = 39.0
+text = "00"
+label_settings = SubResource("LabelSettings_u2ywe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="T2" type="Label" parent="ItemBack/StatBack/TierBack"]
+layout_mode = 2
+offset_top = 40.0
+offset_right = 96.0
+offset_bottom = 79.0
+text = "00"
+label_settings = SubResource("LabelSettings_u2ywe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="T3" type="Label" parent="ItemBack/StatBack/TierBack"]
+layout_mode = 2
+offset_top = 100.0
+offset_right = 96.0
+offset_bottom = 139.0
+text = "00"
+label_settings = SubResource("LabelSettings_u2ywe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="T4" type="Label" parent="ItemBack/StatBack/TierBack"]
+layout_mode = 2
+offset_top = 140.0
+offset_right = 96.0
+offset_bottom = 179.0
+text = "00"
+label_settings = SubResource("LabelSettings_u2ywe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="T5" type="Label" parent="ItemBack/StatBack/TierBack"]
+layout_mode = 2
+offset_top = 200.0
+offset_right = 96.0
+offset_bottom = 239.0
+text = "00"
+label_settings = SubResource("LabelSettings_u2ywe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="T6" type="Label" parent="ItemBack/StatBack/TierBack"]
+layout_mode = 2
+offset_top = 240.0
+offset_right = 96.0
+offset_bottom = 279.0
+text = "00"
+label_settings = SubResource("LabelSettings_u2ywe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Implicits" type="Label" parent="ItemBack/StatBack"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -52.5
+offset_right = 52.5
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "-- IMPLICITS --"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Prefixes" type="Label" parent="ItemBack/StatBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.498
+anchor_top = 0.261
+anchor_right = 0.498
+anchor_bottom = 0.261
+offset_left = -52.4958
+offset_top = -12.6391
+offset_right = 52.5042
+offset_bottom = 13.3609
+grow_horizontal = 2
+text = "-- PREFIXES --"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Suffixes" type="Label" parent="ItemBack/StatBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.498
+anchor_top = 0.261
+anchor_right = 0.498
+anchor_bottom = 0.261
+offset_left = -52.7838
+offset_top = 87.9809
+offset_right = 52.2162
+offset_bottom = 113.981
+grow_horizontal = 2
+text = "-- SUFFIXES --"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Values" type="Label" parent="ItemBack/StatBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.066
+anchor_top = 0.016
+anchor_right = 0.066
+anchor_bottom = 0.016
+offset_left = -52.3778
+offset_top = -12.9173
+offset_right = 52.6222
+offset_bottom = 13.0827
+grow_horizontal = 2
+text = "VALUES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tiers" type="Label" parent="ItemBack/StatBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.932
+anchor_top = 0.016
+anchor_right = 0.932
+anchor_bottom = 0.016
+offset_left = -52.7379
+offset_top = -12.9173
+offset_right = 52.2621
+offset_bottom = 13.0827
+grow_horizontal = 2
+text = "TIERS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="ItemBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16
+anchor_top = 0.849
+anchor_right = 0.841
+anchor_bottom = 0.947
+offset_left = 0.359991
+offset_top = -0.395933
+offset_right = 0.810983
+offset_bottom = 0.212089
+grow_horizontal = 2
+grow_vertical = 0
+text = "DEFAULT ITEM DESCRIPTION"
+label_settings = SubResource("LabelSettings_34ysp")
+horizontal_alignment = 1
+autowrap_mode = 1
+clip_text = true
+
+[node name="Value" type="Label" parent="ItemBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.953
+anchor_right = 0.089
+anchor_bottom = 1.0
+offset_top = 0.188107
+offset_right = 0.218999
+offset_bottom = 0.00012207
+grow_vertical = 0
+text = "0000"
+label_settings = SubResource("LabelSettings_qk3as")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChangeSymbol" type="Label" parent="ItemBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.089
+anchor_top = 0.953
+anchor_right = 0.17
+anchor_bottom = 1.0
+offset_left = 0.218999
+offset_top = 0.188047
+offset_right = 0.0699985
+offset_bottom = 0.00012207
+grow_horizontal = 2
+grow_vertical = 0
+text = "~"
+label_settings = SubResource("LabelSettings_2qtk0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoldTexture" type="TextureRect" parent="ItemBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.055
+anchor_top = 0.897
+anchor_right = 0.127
+anchor_bottom = 0.942
+offset_left = 0.404997
+offset_top = 0.412095
+offset_right = -0.283034
+offset_bottom = 0.232205
+texture = ExtResource("4_lmwr0")
+expand_mode = 1
+
+[node name="ITEMSELL" type="Button" parent="ItemBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.551
+anchor_top = 0.957
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.221001
+offset_top = 0.1721
+offset_bottom = 0.00012207
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_7a35k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jyi6f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xrp51")
+
+[node name="SELL" type="Label" parent="ItemBack/ITEMSELL"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -13.0
+offset_right = 18.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_aawnf")
+text = "SELL"
+label_settings = SubResource("LabelSettings_b66d0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ITEMSTORE" type="Button" parent="ItemBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.17
+anchor_top = 0.957
+anchor_right = 0.55
+anchor_bottom = 1.0
+offset_left = 0.0699985
+offset_top = 0.1721
+offset_right = 0.0499901
+offset_bottom = 0.00012207
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ckaog")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jyi6f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xrp51")
+
+[node name="STORE" type="Label" parent="ItemBack/ITEMSTORE"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -13.0
+offset_right = 18.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_aawnf")
+text = "STORE"
+label_settings = SubResource("LabelSettings_b66d0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hover" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.686275, 0.921569, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ph4ry")
+text = "Default Text"
+
+[node name="MenuBack" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.276
+anchor_bottom = 1.0
+offset_right = 0.0479736
+color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[node name="EXIT" type="Button" parent="MenuBack"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -30.0
+offset_bottom = 30.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_irqpv")
+text = "X"
+
+[node name="RESTART" type="Button" parent="MenuBack"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -264.984
+offset_top = -31.0
+offset_right = 265.016
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_q4y7l")
+text = "RESTART"
+
+[node name="MarketBack" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.009
+anchor_top = 0.019
+anchor_right = 0.542
+anchor_bottom = 0.985
+offset_left = -0.368012
+offset_top = -0.311999
+offset_right = -0.384064
+offset_bottom = -0.280048
+color = Color(0.160784, 0.160784, 0.156863, 1)
+script = ExtResource("4_iciwh")
+
+[node name="MARKETEXIT" type="Button" parent="MarketBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.925
+anchor_right = 1.0
+anchor_bottom = 0.069
+offset_left = 0.0499561
+offset_bottom = -0.194004
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ob04")
+text = "X"
+
+[node name="REFRESH" type="Button" parent="MarketBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.438
+anchor_right = 0.562
+anchor_bottom = 0.05
+offset_left = 0.0679857
+offset_right = -0.0680223
+offset_bottom = -0.3
+grow_horizontal = 2
+text = "REFRESH"
+
+[node name="ShopTimer" type="Timer" parent="MarketBack"]
+wait_time = 240.0
+autostart = true
+
+[node name="MarketItem" parent="MarketBack" instance=ExtResource("8_q1nu2")]
+layout_mode = 1
+anchor_top = 0.094
+anchor_bottom = 0.142
+offset_top = -0.0713335
+offset_right = -1.34399
+offset_bottom = -0.150311
+
+[node name="MarketItem2" parent="MarketBack" instance=ExtResource("8_q1nu2")]
+layout_mode = 1
+anchor_top = 0.146
+anchor_right = 0.999
+anchor_bottom = 0.194
+offset_top = 0.676433
+offset_right = -0.320724
+offset_bottom = 0.597464
+
+[node name="DemandBack" type="ColorRect" parent="MarketBack"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -499.672
+offset_top = -637.312
+offset_right = 499.328
+offset_bottom = -9.31201
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.054902, 0.054902, 0.054902, 1)
+
+[node name="one_h_sword" type="ProgressBar" parent="MarketBack/DemandBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.041
+anchor_top = 0.07
+anchor_right = 0.079
+anchor_bottom = 0.947
+offset_left = 0.0409989
+offset_top = 0.0399998
+offset_right = 0.0789964
+offset_bottom = 0.283983
+value = 10.0
+fill_mode = 3
+show_percentage = false
+
+[node name="two_h_sword" type="ProgressBar" parent="MarketBack/DemandBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.041
+anchor_top = 0.07
+anchor_right = 0.079
+anchor_bottom = 0.947
+offset_left = 39.129
+offset_top = -0.168008
+offset_right = 39.167
+offset_bottom = 0.0759754
+value = 10.0
+fill_mode = 3
+show_percentage = false
+
+[node name="dagger" type="ProgressBar" parent="MarketBack/DemandBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.041
+anchor_top = 0.07
+anchor_right = 0.079
+anchor_bottom = 0.947
+offset_left = 78.129
+offset_top = -0.168008
+offset_right = 78.167
+offset_bottom = 0.0759754
+value = 10.0
+fill_mode = 3
+show_percentage = false
+
+[node name="one_h_blunt" type="ProgressBar" parent="MarketBack/DemandBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.041
+anchor_top = 0.07
+anchor_right = 0.079
+anchor_bottom = 0.947
+offset_left = 156.129
+offset_top = -0.168008
+offset_right = 156.167
+offset_bottom = 0.0759754
+value = 10.0
+fill_mode = 3
+show_percentage = false
+
+[node name="two_hand_blunt" type="ProgressBar" parent="MarketBack/DemandBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.041
+anchor_top = 0.07
+anchor_right = 0.079
+anchor_bottom = 0.947
+offset_left = 117.129
+offset_top = -0.168008
+offset_right = 117.167
+offset_bottom = 0.0759754
+value = 10.0
+fill_mode = 3
+show_percentage = false
+
+[node name="TYPES" type="Label" parent="MarketBack/DemandBack"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "TYPES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DEMAND" type="Label" parent="MarketBack/DemandBack"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 0.0880127
+offset_top = 34.792
+offset_right = 71.088
+offset_bottom = 60.792
+grow_vertical = 2
+rotation = -1.5708
+text = "DEMAND"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TickRate" type="Timer" parent="MarketBack"]
+autostart = true
+
+[node name="InventoryBack" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.008
+anchor_top = 0.009
+anchor_right = 0.543
+anchor_bottom = 0.906
+offset_left = -0.360001
+offset_top = 0.279999
+offset_right = -0.560081
+offset_bottom = 0.51998
+color = Color(0.145098, 0.145098, 0.145098, 1)
+script = ExtResource("12_yteno")
+
+[node name="InventoryLabel" type="Label" parent="InventoryBack"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "INVENTORY"
+label_settings = SubResource("LabelSettings_leke7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EXIT" type="Button" parent="InventoryBack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.967
+anchor_right = 1.0
+anchor_bottom = 0.034
+offset_left = -0.109069
+offset_bottom = 0.0539982
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_6sx2r")
+text = "X"
+
+[connection signal="mouse_entered" from="Background/AgonyOrb" to="." method="_on_agony_orb_mouse_entered"]
+[connection signal="mouse_exited" from="Background/AgonyOrb" to="." method="_on_agony_orb_mouse_exited"]
+[connection signal="pressed" from="Background/AgonyOrb" to="." method="_on_agony_orb_pressed"]
+[connection signal="pressed" from="Background/AgonyOrb/BUY" to="." method="_on_buy_pressed"]
+[connection signal="pressed" from="Background/AgonyOrb/SELL" to="." method="_on_sell_pressed"]
+[connection signal="mouse_entered" from="Background/TurmoilCrystal" to="." method="_on_agony_orb_mouse_entered"]
+[connection signal="mouse_exited" from="Background/TurmoilCrystal" to="." method="_on_agony_orb_mouse_exited"]
+[connection signal="pressed" from="Background/TurmoilCrystal" to="." method="_on_turmoil_crystal_pressed"]
+[connection signal="pressed" from="Background/TurmoilCrystal/Turm_BUY" to="." method="_on_turm_buy_pressed"]
+[connection signal="pressed" from="Background/TurmoilCrystal/Turm_SELL" to="." method="_on_turm_sell_pressed"]
+[connection signal="mouse_entered" from="Background/BismuthShard" to="." method="_on_agony_orb_mouse_entered"]
+[connection signal="mouse_exited" from="Background/BismuthShard" to="." method="_on_agony_orb_mouse_exited"]
+[connection signal="pressed" from="Background/BismuthShard" to="." method="_on_bismuth_shard_pressed"]
+[connection signal="pressed" from="Background/BismuthShard/Bis_BUY" to="." method="_on_bis_buy_pressed"]
+[connection signal="pressed" from="Background/BismuthShard/Bis_SELL" to="." method="_on_bis_sell_pressed"]
+[connection signal="mouse_entered" from="Background/Prism" to="." method="_on_agony_orb_mouse_entered"]
+[connection signal="mouse_exited" from="Background/Prism" to="." method="_on_agony_orb_mouse_exited"]
+[connection signal="pressed" from="Background/Prism/Pri_BUY" to="." method="_on_pri_buy_pressed"]
+[connection signal="pressed" from="Background/Prism/Pri_SELL" to="." method="_on_pri_sell_pressed"]
+[connection signal="mouse_entered" from="Background/RefinementJewel" to="." method="_on_agony_orb_mouse_entered"]
+[connection signal="mouse_exited" from="Background/RefinementJewel" to="." method="_on_agony_orb_mouse_exited"]
+[connection signal="pressed" from="Background/RefinementJewel/Ref_BUY" to="." method="_on_ref_buy_pressed"]
+[connection signal="pressed" from="Background/RefinementJewel/Ref_SELL" to="." method="_on_ref_sell_pressed"]
+[connection signal="mouse_entered" from="Background/ExiledOrb" to="." method="_on_agony_orb_mouse_entered"]
+[connection signal="mouse_exited" from="Background/ExiledOrb" to="." method="_on_agony_orb_mouse_exited"]
+[connection signal="pressed" from="Background/ExiledOrb" to="." method="_on_exiled_orb_pressed"]
+[connection signal="pressed" from="Background/ExiledOrb/Exi_BUY" to="." method="_on_exi_buy_pressed"]
+[connection signal="pressed" from="Background/ExiledOrb/Exi_SELL" to="." method="_on_exi_sell_pressed"]
+[connection signal="pressed" from="GENERATE" to="." method="_on_generate_pressed"]
+[connection signal="pressed" from="MARKET" to="." method="_on_market_pressed"]
+[connection signal="pressed" from="INVENTORY" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="MENU" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="ItemBack/ITEMSELL" to="." method="_on_itemsell_pressed"]
+[connection signal="pressed" from="ItemBack/ITEMSTORE" to="." method="_on_itemstore_pressed"]
+[connection signal="pressed" from="MenuBack/EXIT" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MenuBack/RESTART" to="." method="_on_restart_pressed"]
+[connection signal="alterprice" from="MarketBack" to="." method="_on_market_back_alterprice"]
+[connection signal="currentMarketState" from="MarketBack" to="." method="_on_market_back_current_market_state"]
+[connection signal="pressed" from="MarketBack/MARKETEXIT" to="." method="_on_marketexit_pressed"]
+[connection signal="pressed" from="MarketBack/REFRESH" to="MarketBack" method="_on_refresh_pressed"]
+[connection signal="timeout" from="MarketBack/ShopTimer" to="MarketBack" method="_on_shop_timer_timeout"]
+[connection signal="timeout" from="MarketBack/TickRate" to="MarketBack" method="_on_tick_rate_timeout"]
+[connection signal="pressed" from="InventoryBack/EXIT" to="InventoryBack" method="_on_exit_pressed"]

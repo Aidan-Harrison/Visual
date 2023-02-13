@@ -1,0 +1,122 @@
+[gd_scene load_steps=6 format=3 uid="uid://cayxjpusx8r37"]
+
+[ext_resource type="Script" path="res://UI/MarketItem.gd" id="1_7e7a2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1wng"]
+bg_color = Color(0.686275, 0.12549, 0.145098, 1)
+corner_detail = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_dnot6"]
+font_size = 34
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nl1bb"]
+bg_color = Color(0, 0, 0, 0.501961)
+corner_detail = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_yv85o"]
+font_size = 34
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="MarketItem" type="Control"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.048
+offset_bottom = -0.104
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7e7a2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.002
+anchor_bottom = 1.0
+offset_right = -0.304108
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="BUY" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.171
+anchor_bottom = 1.0
+offset_right = -0.334004
+theme_override_styles/normal = SubResource("StyleBoxFlat_v1wng")
+
+[node name="Label" type="Label" parent="ColorRect/BUY"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BUY"
+label_settings = SubResource("LabelSettings_dnot6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NAME" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.032
+anchor_right = 0.666
+anchor_bottom = 1.0
+offset_left = -0.104016
+offset_top = 0.00799995
+offset_right = -0.56401
+grow_horizontal = 2
+grow_vertical = 2
+text = "DEFAULT ITEM NAME"
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.791
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.18599
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="COST" type="Label" parent="ColorRect/ColorRect"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -13.0
+offset_bottom = 13.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.162
+anchor_bottom = 1.0
+offset_right = -0.0420001
+
+[node name="Sold" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4.0
+offset_bottom = 0.264
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_nl1bb")
+text = "SOLD"
+label_settings = SubResource("LabelSettings_yv85o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="ColorRect/BUY" to="." method="_on_buy_pressed"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c144uhg6ygg5m"]
+
+[ext_resource type="Texture2D" uid="uid://cd3a8tlef82am" path="res://Assets/Textures/Prism.png" id="1_rbuyg"]
+[ext_resource type="Script" path="res://UI/InventoryButton.gd" id="2_nivfa"]
+
+[node name="InventoryButton" type="ColorRect"]
+anchors_preset = -1
+anchor_right = 0.089
+anchor_bottom = 0.212
+offset_right = -0.880003
+offset_bottom = 0.0399866
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.407843, 0.407843, 0.407843, 1)
+script = ExtResource("2_nivfa")
+
+[node name="Core" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("1_rbuyg")
+flat = true
+expand_icon = true
+
+[connection signal="pressed" from="Core" to="." method="_on_color_rect_pressed"]
